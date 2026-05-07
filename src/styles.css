@@ -7,6 +7,16 @@ html, body{
     --headerFont: "Jaro";
     --bodyFont: Arial;
 
+    /* Main Colors */
+    --mainOrange: #dd4b1b;
+    --baseBlack: #25343f;
+    --darkBlack: #202e38;
+    --baseWhite: #e1efef;
+    --darkWhite: #c4c9c9;
+    --baseRed: #d5010c;
+    --baseYellow: #d58e0a;
+    --baseGreen: #62d50a;
+
     /* To be removed */
     background-color: black;
     color: white;
