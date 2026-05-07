@@ -8,5 +8,5 @@ const Project = class{
 }
 
 export{
-    Project
+    Project as "CLMProject"
 }
