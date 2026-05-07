@@ -16,16 +16,10 @@ html, body{
     --baseRed: #d5010c;
     --baseYellow: #d58e0a;
     --baseGreen: #62d50a;
-
-    /* To be removed */
-    background-color: black;
-    color: white;
 }
 
-
-.jaro-h1{
-  font-family: var(--headerFont), sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+#content{
+    background-color: var(--baseWhite);
+    height: 100%;
+    width: 100%;
 }
