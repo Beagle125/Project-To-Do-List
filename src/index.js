@@ -2,7 +2,20 @@ import "./styles.css";
 import * as myModules from './myModules.js';
 
 // The initial setUp when loading the website logic
-(function setUp (){
-    const mainContainer = document.getElementById('content');
-    myModules.DMMcreateSideBar(mainContainer);
+(function websiteLogic (){
+    const mainContainer = document.getElementById('content'); // the main container
+    let storage = localStorage.getItem('donezoData');
+
+
+    const setUp = (mainContainer) => {
+        /* Intial check of storage item*/
+        if (!storage){
+            let defaultData = [0];
+            localStorage.setItem('donezoData', defaultData);
+        }
+
+        myModules.DMMcreateSideBar(mainContainer);
+    };
+
+    setUp();
 })();
