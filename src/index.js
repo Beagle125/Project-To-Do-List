@@ -8,12 +8,7 @@ import * as myModules from './myModules.js';
 
 
     const setUp = (mainContainer) => {
-        /* Intial check of storage item*/
-        if (!storage){
-            let defaultData = [0];
-            localStorage.setItem('donezoData', defaultData);
-        }
-
+        myModules.LSMCheckStorage(storage);
         myModules.DMMcreateSideBar(mainContainer);
     };
 
