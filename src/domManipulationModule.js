@@ -1,6 +1,7 @@
 // Import images
 import logoImg from '../static/logo.svg';
 import addImg from '../static/add.svg';
+import checkImg from '../static/checkmark.svg';
 
 const DMMcreateSideBar = (mainContainer, storage) => {
     console.log("Creating the side bar...")
@@ -28,15 +29,27 @@ const DMMcreateSideBar = (mainContainer, storage) => {
     let projectCount = 0;
     for (let project of storage){
         let projectItem = document.createElement('div');
+        let projectItemLeft = document.createElement('div');
+        let projectItemText = document.createElement('div');
+        let projectCheckImg = document.createElement('img');
+
+        projectCheckImg.src = checkImg;
+        projectItemLeft.appendChild(projectCheckImg);
+
+        projectItemText.textContent =  `${project.title}`;
+        projectItemLeft.appendChild(projectItemText);
+
+
         projectItem.classList.add('projectItem');
+        projectItemLeft.className = 'projectItemLeft';
 
         /*This is for the initially selected project*/
         if (!projectCount)
             projectItem.classList.add('selectedProject');
 
         projectItem.id = `${project.id}`;
-        projectItem.textContent = `${project.title}`;
 
+        projectItem.appendChild(projectItemLeft);
         scrollable.appendChild(projectItem);
         projectCount++;
     }
