@@ -82,8 +82,23 @@ html, body{
   width: 100%;
 }
 
+#sidebar .addBtn{
+  align-self: center;
+  grid-row: 3 / 4;
+  height: auto;
+  justify-self: end;
+  margin-right: 8px;
+}
+
 /*Scrollable Styles and Logic*/
 .scrollable{
   width: 100%;
   overflow-y: auto;
+}
+
+/* Add btn Styles*/
+.addBtn{
+  border: 0;
+  height: auto;
+  width: 60px;
 }
