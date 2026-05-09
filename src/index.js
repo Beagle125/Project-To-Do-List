@@ -17,4 +17,8 @@ import * as myModules from './myModules.js';
 
     // Start of the website
     setUp();
+
+    // event detections
+    myModules.EHMDetectEvent();
+
 })();

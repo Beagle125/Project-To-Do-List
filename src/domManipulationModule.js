@@ -2,6 +2,8 @@
 import logoImg from '../static/logo.svg';
 import addImg from '../static/add.svg';
 import checkImg from '../static/checkmark.svg';
+import deleteImg from '../static/delete.svg';
+import editImg from '../static/edit.svg';
 
 const DMMcreateSideBar = (mainContainer, storage) => {
     console.log("Creating the side bar...")
@@ -65,11 +67,34 @@ const DMMcreateSideBar = (mainContainer, storage) => {
     sidebar.appendChild(addBtn);
 
     mainContainer.appendChild(sidebar);
-
-    
-
 };
+
+const DMMhoverProjectItem = (projectItem) => {
+    const projectItemRight = document.createElement('div');
+    const deleteBtn = document.createElement('img');
+    const editBtn = document.createElement('img');
+
+    deleteBtn.src = deleteImg;
+    editBtn.src = editImg;
+
+    projectItemRight.className = 'projectItemRight';
+    deleteBtn.className = 'deleteBtn';
+    editBtn.className = 'editBtn';
+
+    projectItemRight.appendChild(editBtn);
+    projectItemRight.appendChild(deleteBtn);
+
+    projectItem.appendChild(projectItemRight);
+}
+
+const DMMunhoverProjectItem = (projectItem) => {
+    const projectItemRight = projectItem.querySelector('.projectItemRight');
+
+    projectItemRight.remove();
+}
 
 export{
     DMMcreateSideBar,
+    DMMhoverProjectItem,
+    DMMunhoverProjectItem,
 }
