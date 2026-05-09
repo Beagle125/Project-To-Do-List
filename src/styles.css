@@ -12,6 +12,7 @@ html, body{
     --mainOrange: #dd4b1b;
     --baseBlack: #25343f;
     --darkBlack: #202e38;
+    --darkestBlack: #1b262d;
     --baseWhite: #e1efef;
     --darkWhite: #c4c9c9;
     --baseRed: #d5010c;
@@ -71,15 +72,28 @@ html, body{
 }
 
 .projectItem{
-  background-color: var(--mainOrange);
+  align-items: center;
+  background-color: var(--darkestBlack);
   border-radius: 10px;
+  box-sizing: border-box;
   color: white;
+  display: flex;
   font-family: var(--headerFont), var(--bodyFont);
   font-size: var(--bodySize);
   height: 10%;
   margin-top: 24px;
   opacity: 0.7;
+  padding: 0 4px 0 4px;
+  transition: all 0.3s ease;
   width: 100%;
+}
+
+.selectedProject{
+  background-color: var(--mainOrange);
+}
+
+.projectItem:hover{
+  filter: brightness(0.5);
 }
 
 #sidebar .addBtn{
@@ -88,6 +102,12 @@ html, body{
   height: auto;
   justify-self: end;
   margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+#sidebar .addBtn:hover{
+  filter: brightness(0.7);
+  transform: scale(1.2);
 }
 
 /*Scrollable Styles and Logic*/
