@@ -9,14 +9,12 @@ import * as myModules from './myModules.js';
     // The initial setUp when loading the website logic
     const setUp = () => {
         myModules.LSMCheckStorage(storage);
-        myModules.DMMcreateSideBar(mainContainer, storage);
-
         // Recheck storage again if ever it is updated
         storage = JSON.parse(localStorage.getItem('donezoData'));
+
+        myModules.DMMcreateSideBar(mainContainer, storage);
     };
 
     // Start of the website
     setUp();
-
-    console.log(storage);
 })();
