@@ -1,4 +1,4 @@
-import { CLMProject } from "./classLogicModule";
+import { CLMProject } from "./classLogicModule.js";
 
 const LSMCheckStorage = (storage) => {
     /* Intial check of storage item*/

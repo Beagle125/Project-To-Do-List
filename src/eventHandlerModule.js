@@ -49,6 +49,8 @@ const EHMDetectEvent = (mainContainer, storage) => {
             // Close the modal
             DMMCloseEditModal();
 
+            editformInput.value = '';
+
             // update the display name
             let projectItemLeft = selectedProject.querySelector('.projectItemLeft');
             let projectDisplay = projectItemLeft.querySelector('div');

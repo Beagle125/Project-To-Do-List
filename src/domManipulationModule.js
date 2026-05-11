@@ -151,10 +151,7 @@ const DMMOpenEditModal = () => {
 
 const DMMCloseEditModal = () => {
     const modal = document.getElementById('editModal'); 
-    const editformInput = document.getElementById('editformInput');
-
-    editformInput.value = '';
-    modal.close();
+     modal.close();
 };
 
 
