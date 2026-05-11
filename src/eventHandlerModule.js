@@ -1,6 +1,8 @@
 import { DMMhoverProjectItem } from "./domManipulationModule.js";
 import { DMMunhoverProjectItem } from "./domManipulationModule.js";
 import { DMMclickedProjectItem } from "./domManipulationModule.js";
+import { DMMcreateBaseModal } from "./domManipulationModule.js";
+import { DMMEditModal } from "./domManipulationModule.js";
 
 
 const EHMDetectEvent = () => {
@@ -17,6 +19,9 @@ const EHMDetectEvent = () => {
             });
             editBtn.addEventListener('click', () => {
                 alert('Project Item has been edited!');
+                const mainContainer = document.getElementById('content');
+                DMMcreateBaseModal(mainContainer);
+                DMMEditModal();
             });
         });
         projectItem.addEventListener('mouseleave', () => {
@@ -25,6 +30,12 @@ const EHMDetectEvent = () => {
         projectItem.addEventListener('click', () => {
             DMMclickedProjectItem(projectItem);
         });
+    });
+
+    // Close modal event
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('closeBtn'))
+            alert('Close button is clicked');
     });
 }
 

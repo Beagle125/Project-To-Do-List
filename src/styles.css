@@ -148,3 +148,78 @@ html, body{
   filter: brightness(1.3);
   transform: scale(1.2);
 }
+
+/* Close button styles*/
+.closeBtn{
+  grid-row: 1 / 2;
+  justify-self: end;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover{
+  cursor: pointer;
+  filter: brightness(1.3);
+  transform: scale(1.2);
+}
+
+/* Save button styles */
+.saveBtn{
+  background-color: var(--mainOrange);
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  font-family: var(--bodyFont);
+  font-size: var(--bodySize);
+  height: 3rem;
+  width: 20%;
+  transition: all 0.3s ease;
+}
+
+.saveBtn:hover{
+  cursor: pointer;
+  filter: brightness(1.3);
+  transform: scale(1.2);
+}
+
+/* Modal styles */
+.baseModal{
+  align-items: center;
+  background-color: var(--baseBlack);
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: grid;
+  gap: 12px;
+  grid-template-rows: 1fr 3fr 1fr;
+  height: 200px;
+  position: fixed;
+  z-index: 0;
+
+  overflow: hidden;
+}
+
+
+.modalHeader{
+  color: white;
+  font-family: var(--headerFont), var(--bodyFont);
+  font-size: var(--headerSize);
+  grid-row: 1 / 2;
+}
+
+.baseModal form{
+  display: flex;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.formInput{
+  background-color: var(--darkBlack);
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  font-family: var(--bodyFont);
+  height: 3rem;
+  width: 70%;
+}

@@ -4,6 +4,8 @@ import addImg from '../static/add.svg';
 import checkImg from '../static/checkmark.svg';
 import deleteImg from '../static/delete.svg';
 import editImg from '../static/edit.svg';
+import closeImg from  '../static/remove.svg';
+import saveImg from '../static/save.svg';
 
 const DMMcreateSideBar = (mainContainer, storage) => {
     console.log("Creating the side bar...")
@@ -85,13 +87,13 @@ const DMMhoverProjectItem = (projectItem) => {
     projectItemRight.appendChild(deleteBtn);
 
     projectItem.appendChild(projectItemRight);
-}
+};
 
 const DMMunhoverProjectItem = (projectItem) => {
     const projectItemRight = projectItem.querySelector('.projectItemRight');
 
     projectItemRight.remove();
-}
+};
 
 const DMMclickedProjectItem = (projectItem) => {
     const currentlySelected = document.querySelector('.selectedProject');
@@ -101,10 +103,55 @@ const DMMclickedProjectItem = (projectItem) => {
 
     /*Add the selectedProject class to the newly selected item*/
     projectItem.classList.add('selectedProject');
+};
+
+const DMMcreateBaseModal = (mainContainer) =>{
+    const modal = document.createElement('dialog');
+    modal.className = 'baseModal';
+
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImg;
+    closeBtn.className = 'closeBtn';
+
+    const header = document.createElement('p');
+    header.className = 'modalHeader';
+    header.textContent = '';
+
+    modal.appendChild(header);
+    modal.appendChild(closeBtn);
+
+    mainContainer.appendChild(modal);
+    modal.showModal();
+};
+
+const DMMEditModal = () => {
+    const modal = document.querySelector('.baseModal');
+    const header = modal.querySelector('.modalHeader');
+    const form = document.createElement('form');
+    const formInput =  document.createElement('input');
+    const saveBtn = document.createElement('button')
+    header.textContent = 'Change the name of your project';
+
+    formInput.type = 'text';
+    formInput.placeholder = 'New project name';
+    formInput.className = 'formInput';
+    formInput.required = true;
+
+    saveBtn.textContent = 'Save';
+    saveBtn.className = 'saveBtn';
+
+    form.appendChild(formInput);
+    form.appendChild(saveBtn);
+    modal.appendChild(form);
+
 }
+
+
 export{
     DMMcreateSideBar,
     DMMhoverProjectItem,
     DMMunhoverProjectItem,
     DMMclickedProjectItem,
+    DMMcreateBaseModal,
+    DMMEditModal,
 }
