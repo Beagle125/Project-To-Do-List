@@ -12,6 +12,20 @@ const LSMCheckStorage = (storage) => {
     }
 }
 
+const LSMEditProjectName = (storage, newValue, selectedProject) => {
+    const selectedProjectId = selectedProject.id;
+
+    storage.forEach((projectItem) => {
+        if (projectItem.id === selectedProjectId)
+            projectItem.title = newValue;
+    }); 
+
+    // update the local storage
+    localStorage.setItem('donezoData', JSON.stringify(storage));
+
+};
+
 export{
-    LSMCheckStorage
+    LSMCheckStorage,
+    LSMEditProjectName,
 }

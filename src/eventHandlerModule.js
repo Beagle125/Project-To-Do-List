@@ -1,11 +1,11 @@
-import { DMMhoverProjectItem } from "./domManipulationModule.js";
+import { DMMCreateEditModal, DMMhoverProjectItem } from "./domManipulationModule.js";
 import { DMMunhoverProjectItem } from "./domManipulationModule.js";
 import { DMMclickedProjectItem } from "./domManipulationModule.js";
-import { DMMcreateBaseModal } from "./domManipulationModule.js";
-import { DMMEditModal } from "./domManipulationModule.js";
+import { DMMOpenEditModal } from "./domManipulationModule.js";
+import { DMMCloseEditModal } from "./domManipulationModule.js";
+import { LSMEditProjectName } from "./localStorageModule.js";
 
-
-const EHMDetectEvent = () => {
+const EHMDetectEvent = (mainContainer, storage) => {
     const projects = document.querySelectorAll('.projectItem');
 
     // Hover event for each project item
@@ -18,10 +18,7 @@ const EHMDetectEvent = () => {
                 alert('Project Item has been deleted!');
             });
             editBtn.addEventListener('click', () => {
-                alert('Project Item has been edited!');
-                const mainContainer = document.getElementById('content');
-                DMMcreateBaseModal(mainContainer);
-                DMMEditModal();
+                DMMOpenEditModal();
             });
         });
         projectItem.addEventListener('mouseleave', () => {
@@ -36,6 +33,28 @@ const EHMDetectEvent = () => {
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('closeBtn'))
             alert('Close button is clicked');
+    });
+
+    // submit event
+    document.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (event.target.classList.contains('editProjectNameForm')){
+            const editFormInput = document.getElementById('editFormInput'); 
+            let editformValue = editformInput.value;
+            let selectedProject = document.querySelector('.selectedProject');
+            // update the local storage
+            LSMEditProjectName(storage, editformValue, selectedProject);
+            
+            // Close the modal
+            DMMCloseEditModal();
+
+            // update the display name
+            let projectItemLeft = selectedProject.querySelector('.projectItemLeft');
+            let projectDisplay = projectItemLeft.querySelector('div');
+
+            projectDisplay.textContent = editformValue;
+        }
     });
 }
 

@@ -105,9 +105,9 @@ const DMMclickedProjectItem = (projectItem) => {
     projectItem.classList.add('selectedProject');
 };
 
-const DMMcreateBaseModal = (mainContainer) =>{
+const DMMCreateEditModal = (mainContainer) => {
     const modal = document.createElement('dialog');
-    modal.className = 'baseModal';
+    modal.id = 'editModal';
 
     const closeBtn = document.createElement('img');
     closeBtn.src = closeImg;
@@ -115,25 +115,22 @@ const DMMcreateBaseModal = (mainContainer) =>{
 
     const header = document.createElement('p');
     header.className = 'modalHeader';
-    header.textContent = '';
+    header.textContent = 'Change the name of your project';
 
     modal.appendChild(header);
     modal.appendChild(closeBtn);
 
-    mainContainer.appendChild(modal);
-    modal.showModal();
-};
 
-const DMMEditModal = () => {
-    const modal = document.querySelector('.baseModal');
-    const header = modal.querySelector('.modalHeader');
     const form = document.createElement('form');
     const formInput =  document.createElement('input');
     const saveBtn = document.createElement('button')
-    header.textContent = 'Change the name of your project';
+
+    form.className = 'editProjectNameForm';
+    form.autocomplete = 'off';
 
     formInput.type = 'text';
     formInput.placeholder = 'New project name';
+    formInput.id = 'editformInput';
     formInput.className = 'formInput';
     formInput.required = true;
 
@@ -144,7 +141,21 @@ const DMMEditModal = () => {
     form.appendChild(saveBtn);
     modal.appendChild(form);
 
+    mainContainer.appendChild(modal);
 }
+
+const DMMOpenEditModal = () => {
+    const modal = document.getElementById('editModal');
+    modal.showModal();
+};
+
+const DMMCloseEditModal = () => {
+    const modal = document.getElementById('editModal'); 
+    const editformInput = document.getElementById('editformInput');
+
+    editformInput.value = '';
+    modal.close();
+};
 
 
 export{
@@ -152,6 +163,7 @@ export{
     DMMhoverProjectItem,
     DMMunhoverProjectItem,
     DMMclickedProjectItem,
-    DMMcreateBaseModal,
-    DMMEditModal,
+    DMMCreateEditModal,
+    DMMOpenEditModal,
+    DMMCloseEditModal,
 }
