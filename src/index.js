@@ -8,10 +8,11 @@ import * as myModules from './myModules.js';
 
     // The initial setUp when loading the website logic
     const setUp = () => {
+        // Check for the storage if it contains valid values
         myModules.LSMCheckStorage(storage);
         // Recheck storage again if ever it is updated
         storage = JSON.parse(localStorage.getItem('donezoData'));
-
+        // Create the sidebar
         myModules.DMMcreateSideBar(mainContainer, storage);
     };
 

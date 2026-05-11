@@ -1,5 +1,6 @@
 import { DMMhoverProjectItem } from "./domManipulationModule.js";
 import { DMMunhoverProjectItem } from "./domManipulationModule.js";
+import { DMMclickedProjectItem } from "./domManipulationModule.js";
 
 
 const EHMDetectEvent = () => {
@@ -22,7 +23,7 @@ const EHMDetectEvent = () => {
             DMMunhoverProjectItem(projectItem);
         });
         projectItem.addEventListener('click', () => {
-            alert('Project Item has been clicked!');
+            DMMclickedProjectItem(projectItem);
         });
     });
 }

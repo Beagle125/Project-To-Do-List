@@ -93,8 +93,18 @@ const DMMunhoverProjectItem = (projectItem) => {
     projectItemRight.remove();
 }
 
+const DMMclickedProjectItem = (projectItem) => {
+    const currentlySelected = document.querySelector('.selectedProject');
+
+    /*Remove the selectedProject class*/
+    currentlySelected.classList.remove('selectedProject');
+
+    /*Add the selectedProject class to the newly selected item*/
+    projectItem.classList.add('selectedProject');
+}
 export{
     DMMcreateSideBar,
     DMMhoverProjectItem,
     DMMunhoverProjectItem,
+    DMMclickedProjectItem,
 }
