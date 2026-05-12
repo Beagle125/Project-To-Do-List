@@ -7,7 +7,9 @@ import editImg from '../static/edit.svg';
 import closeImg from  '../static/remove.svg';
 import saveImg from '../static/save.svg';
 
-const DMMcreateSideBar = (mainContainer, storage) => {
+const DMMCreateProjectItem = (projectItem) => {};
+
+const DMMCreateSideBar = (mainContainer, storage) => {
     console.log("Creating the side bar...")
 
     /*Create the sidebar div and its children*/
@@ -71,7 +73,7 @@ const DMMcreateSideBar = (mainContainer, storage) => {
     mainContainer.appendChild(sidebar);
 };
 
-const DMMhoverProjectItem = (projectItem) => {
+const DMMHoverProjectItem = (projectItem) => {
     const projectItemRight = document.createElement('div');
     const deleteBtn = document.createElement('img');
     const editBtn = document.createElement('img');
@@ -89,13 +91,13 @@ const DMMhoverProjectItem = (projectItem) => {
     projectItem.appendChild(projectItemRight);
 };
 
-const DMMunhoverProjectItem = (projectItem) => {
+const DMMUnhoverProjectItem = (projectItem) => {
     const projectItemRight = projectItem.querySelector('.projectItemRight');
 
     projectItemRight.remove();
 };
 
-const DMMclickedProjectItem = (projectItem) => {
+const DMMClickedProjectItem = (projectItem) => {
     const currentlySelected = document.querySelector('.selectedProject');
 
     /*Remove the selectedProject class*/
@@ -156,10 +158,10 @@ const DMMCloseEditModal = () => {
 
 
 export{
-    DMMcreateSideBar,
-    DMMhoverProjectItem,
-    DMMunhoverProjectItem,
-    DMMclickedProjectItem,
+    DMMCreateSideBar,
+    DMMHoverProjectItem,
+    DMMUnhoverProjectItem,
+    DMMClickedProjectItem,
     DMMCreateEditModal,
     DMMOpenEditModal,
     DMMCloseEditModal,

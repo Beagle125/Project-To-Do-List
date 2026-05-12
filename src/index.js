@@ -17,7 +17,7 @@ import * as myModules from './myModules.js';
             // Create the modal
         myModules.DMMCreateEditModal(mainContainer)
         // Create the sidebar
-        myModules.DMMcreateSideBar(mainContainer, storage);
+        myModules.DMMCreateSideBar(mainContainer, storage);
     };
 
     // Start of the website

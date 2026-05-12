@@ -1,8 +1,4 @@
-import { DMMCreateEditModal, DMMhoverProjectItem } from "./domManipulationModule.js";
-import { DMMunhoverProjectItem } from "./domManipulationModule.js";
-import { DMMclickedProjectItem } from "./domManipulationModule.js";
-import { DMMOpenEditModal } from "./domManipulationModule.js";
-import { DMMCloseEditModal } from "./domManipulationModule.js";
+import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem, DMMClickedProjectItem, DMMOpenEditModal, DMMCloseEditModal } from "./domManipulationModule.js";
 import { LSMEditProjectName } from "./localStorageModule.js";
 
 const EHMDetectEvent = (mainContainer, storage) => {
@@ -11,7 +7,7 @@ const EHMDetectEvent = (mainContainer, storage) => {
     // Hover event for each project item
     projects.forEach((projectItem) => {
         projectItem.addEventListener('mouseenter', () => {
-            DMMhoverProjectItem(projectItem);
+            DMMHoverProjectItem(projectItem);
             const deleteBtn = projectItem.querySelector('.deleteBtn');
             const editBtn = projectItem.querySelector('.editBtn');
             deleteBtn.addEventListener('click', () => {
@@ -22,10 +18,10 @@ const EHMDetectEvent = (mainContainer, storage) => {
             });
         });
         projectItem.addEventListener('mouseleave', () => {
-            DMMunhoverProjectItem(projectItem);
+            DMMUnhoverProjectItem(projectItem);
         });
         projectItem.addEventListener('click', () => {
-            DMMclickedProjectItem(projectItem);
+            DMMClickedProjectItem(projectItem);
         });
     });
 
