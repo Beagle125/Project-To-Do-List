@@ -7,12 +7,32 @@ import editImg from '../static/edit.svg';
 import closeImg from  '../static/remove.svg';
 import saveImg from '../static/save.svg';
 
-const DMMCreateProjectItem = (projectItem) => {};
+const DMMCreateProjectItem = (project, scrollable) => {
+    // Create and add the proper attributes to projectItem
+    let projectItem = document.createElement('div');
+    projectItem.classList.add('projectItem');
+    projectItem.id = `${project.id}`;
+    // Create the left side properties and their attributes
+    let projectItemLeft = document.createElement('div');
+    let projectItemText = document.createElement('div');
+    let projectCheckImg = document.createElement('img');
+
+    projectCheckImg.src = checkImg;
+    projectItemLeft.appendChild(projectCheckImg);
+
+    projectItemText.textContent =  `${project.title}`;
+    projectItemLeft.appendChild(projectItemText);
+
+    projectItemLeft.className = 'projectItemLeft';
+    projectItem.appendChild(projectItemLeft);
+    // Append the newly created project item to the scrollable
+    scrollable.appendChild(projectItem);
+};
 
 const DMMCreateSideBar = (mainContainer, storage) => {
     console.log("Creating the side bar...")
 
-    /*Create the sidebar div and its children*/
+    //Create the sidebar div and its children
     const sidebar = document.createElement('div');
     const logo = document.createElement('div');
     const logoImageElement = document.createElement('img');
@@ -21,7 +41,7 @@ const DMMCreateSideBar = (mainContainer, storage) => {
     const header = document.createElement('p');
     const scrollable = document.createElement('div');
 
-    /*Give the correct classes and attributes*/
+    //Give the correct classes and attributes
     sidebar.id = 'sidebar';
     logo.id = 'logo';
     logoImageElement.src = logoImg;
@@ -31,36 +51,17 @@ const DMMCreateSideBar = (mainContainer, storage) => {
     addBtn.className = 'addBtn';
     addBtn.src = addImg;
 
-    /*Logic for creating each projectItem*/
-    let projectCount = 0;
+    //Logic for creating each projectItem
     for (let project of storage){
-        let projectItem = document.createElement('div');
-        let projectItemLeft = document.createElement('div');
-        let projectItemText = document.createElement('div');
-        let projectCheckImg = document.createElement('img');
-
-        projectCheckImg.src = checkImg;
-        projectItemLeft.appendChild(projectCheckImg);
-
-        projectItemText.textContent =  `${project.title}`;
-        projectItemLeft.appendChild(projectItemText);
-
-
-        projectItem.classList.add('projectItem');
-        projectItemLeft.className = 'projectItemLeft';
-
-        /*This is for the initially selected project*/
-        if (!projectCount)
-            projectItem.classList.add('selectedProject');
-
-        projectItem.id = `${project.id}`;
-
-        projectItem.appendChild(projectItemLeft);
-        scrollable.appendChild(projectItem);
-        projectCount++;
+        // Create the project item
+        DMMCreateProjectItem(project, scrollable);
     }
 
-    /*Stitch everything together*/
+    // Add the selectedProject class name to the first project
+    const firstProject = scrollable.querySelector('div:first-of-type');
+    firstProject.classList.add('selectedProject');
+
+    //Stitch everything together
     logo.appendChild(logoImageElement);
     
     projects.appendChild(header);
@@ -100,10 +101,10 @@ const DMMUnhoverProjectItem = (projectItem) => {
 const DMMClickedProjectItem = (projectItem) => {
     const currentlySelected = document.querySelector('.selectedProject');
 
-    /*Remove the selectedProject class*/
+    //Remove the selectedProject class
     currentlySelected.classList.remove('selectedProject');
 
-    /*Add the selectedProject class to the newly selected item*/
+    //Add the selectedProject class to the newly selected item
     projectItem.classList.add('selectedProject');
 };
 
@@ -158,6 +159,7 @@ const DMMCloseEditModal = () => {
 
 
 export{
+    DMMCreateProjectItem,
     DMMCreateSideBar,
     DMMHoverProjectItem,
     DMMUnhoverProjectItem,
