@@ -32,7 +32,7 @@ const EHMDetectEvent = (mainContainer, storage) => {
     // Close modal event
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('closeBtn'))
-            alert('Close button is clicked');
+            DMMCloseEditModal();
     });
 
     // submit event

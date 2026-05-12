@@ -181,8 +181,8 @@ html, body{
   transform: scale(1.2);
 }
 
-/* Edit Modal styles */
-#editModal[open]{
+/* Base Modal styles */
+dialog[open]{
   align-self: center;
   align-items: center;
   background-color: var(--baseBlack);
@@ -198,7 +198,10 @@ html, body{
   overflow: hidden;
 }
 
-
+dialog::backdrop{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* Edit Modal Styles */
 .modalHeader{
   color: white;
   font-family: var(--headerFont), var(--bodyFont);
