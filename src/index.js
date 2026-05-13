@@ -19,6 +19,8 @@ import * as myModules from './myModules.js';
         myModules.DMMCreateAddModal(mainContainer);
         // Create the sidebar
         myModules.DMMCreateSideBar(mainContainer, storage);
+        // Create the dashboard
+        myModules.DMMCreateDashboard(mainContainer);
     };
 
     // Start of the website
@@ -26,5 +28,4 @@ import * as myModules from './myModules.js';
 
     // event detections
     myModules.EHMDetectEvent(mainContainer, storage);
-
 })();

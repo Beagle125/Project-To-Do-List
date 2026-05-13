@@ -103,6 +103,7 @@ html, body{
   align-items: center;
   display: flex;
   gap: 1rem;
+  pointer-events: none;
 }
 
 .projectItemRight{
@@ -225,4 +226,10 @@ dialog form{
   font-family: var(--bodyFont);
   height: 3rem;
   width: 70%;
+}
+
+/*Dashboard styles*/
+#dashboard{
+  grid-column: 2 / 3;
+  height: 100%;
 }

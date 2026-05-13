@@ -1,14 +1,21 @@
 import { CLMProject } from "./classLogicModule.js";
 
+const LSMCreateProject = (projectTitle) => {
+    let project = new CLMProject(self.crypto.randomUUID(), projectTitle, []);
+    return project
+};
+
+const LSMAddNewProject = (storage, project) => {
+    storage.push(project);
+    localStorage.setItem('donezoData', JSON.stringify(storage));
+};
+
 const LSMCheckStorage = (storage) => {
     /* Intial check of storage item*/
     if (!storage){
         let defaultData = []
-        let defaultProject1 = new CLMProject(self.crypto.randomUUID(), "Project 1", []);
-        let defaultProject2 = new CLMProject(self.crypto.randomUUID(), "Project 2", []);
-        defaultData.push(defaultProject1);
-        defaultData.push(defaultProject2);
-        localStorage.setItem('donezoData', JSON.stringify(defaultData));
+        let defaultProject1 = LSMCreateProject('Project 1');
+        LSMAddNewProject(defaultData, defaultProject1);
     }
 }
 
@@ -28,4 +35,6 @@ const LSMEditProjectName = (storage, newValue, selectedProject) => {
 export{
     LSMCheckStorage,
     LSMEditProjectName,
+    LSMCreateProject,
+    LSMAddNewProject,
 }

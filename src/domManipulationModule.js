@@ -11,6 +11,7 @@ const DMMCreateProjectItem = (project, scrollable) => {
     // Create and add the proper attributes to projectItem
     let projectItem = document.createElement('div');
     projectItem.classList.add('projectItem');
+    projectItem.classList.add('projectContent');
     projectItem.id = `${project.id}`;
     // Create the left side properties and their attributes
     let projectItemLeft = document.createElement('div');
@@ -74,6 +75,13 @@ const DMMCreateSideBar = (mainContainer, storage) => {
     mainContainer.appendChild(sidebar);
 };
 
+const DMMCreateDashboard = (mainContainer) => {
+    const dashboard = document.createElement('div');
+    dashboard.id = 'dashboard';
+
+    mainContainer.appendChild(dashboard);
+};
+
 const DMMHoverProjectItem = (projectItem) => {
     const projectItemRight = document.createElement('div');
     const deleteBtn = document.createElement('img');
@@ -82,9 +90,14 @@ const DMMHoverProjectItem = (projectItem) => {
     deleteBtn.src = deleteImg;
     editBtn.src = editImg;
 
-    projectItemRight.className = 'projectItemRight';
-    deleteBtn.className = 'deleteBtn';
-    editBtn.className = 'editBtn';
+    projectItemRight.classList.add('projectContent');
+    projectItemRight.classList.add('projectItemRight');
+
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.classList.add('projectContent');
+
+    editBtn.classList.add('editBtn');
+    editBtn.classList.add('projectContent');
 
     projectItemRight.appendChild(editBtn);
     projectItemRight.appendChild(deleteBtn);
@@ -93,9 +106,11 @@ const DMMHoverProjectItem = (projectItem) => {
 };
 
 const DMMUnhoverProjectItem = (projectItem) => {
-    const projectItemRight = projectItem.querySelector('.projectItemRight');
 
-    projectItemRight.remove();
+    const projectItemRight = document.querySelector('.projectItemRight');
+
+    if (projectItemRight)
+        projectItemRight.remove();
 };
 
 const DMMClickedProjectItem = (projectItem) => {
@@ -209,6 +224,7 @@ const DMMCloseAddModal = () => {
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
+    DMMCreateDashboard,
     DMMHoverProjectItem,
     DMMUnhoverProjectItem,
     DMMClickedProjectItem,
