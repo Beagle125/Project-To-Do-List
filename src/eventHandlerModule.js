@@ -29,8 +29,6 @@ const EHMDetectEvent = (mainContainer, storage) => {
     });
     */
     
-
-
     // This will serve as the unhover event for the project items
     document.addEventListener('mousemove', (event) => {
         let targetDiv = event.target.closest('.projectItem');
@@ -43,7 +41,6 @@ const EHMDetectEvent = (mainContainer, storage) => {
             DMMUnhoverProjectItem(projectItem);
             isProjectHovered = false;
         }
-
     });
     
 
@@ -51,10 +48,16 @@ const EHMDetectEvent = (mainContainer, storage) => {
     // click events using event delegation
     mainContainer.addEventListener('click', (event) => {
         const targetDiv = event.target.closest('.projectItem');
+        // projectItem select
         if (event.target === targetDiv){
             const projectItem = event.target;
             DMMClickedProjectItem(projectItem);  
         }      
+        // edit Project name
+        else if (event.target.classList.contains('editBtn')){
+            DMMClickedProjectItem(targetDiv);
+            DMMOpenEditModal();
+        }
     });
 
 
