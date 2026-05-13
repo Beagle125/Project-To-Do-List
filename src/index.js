@@ -17,6 +17,7 @@ import * as myModules from './myModules.js';
         // Create the modal
         myModules.DMMCreateEditModal(mainContainer);
         myModules.DMMCreateAddModal(mainContainer);
+        myModules.DMMCreateDeleteModal(mainContainer);
         // Create the sidebar
         myModules.DMMCreateSideBar(mainContainer, storage);
         // Create the dashboard

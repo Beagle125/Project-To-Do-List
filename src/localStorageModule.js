@@ -32,9 +32,21 @@ const LSMEditProjectName = (storage, newValue, selectedProject) => {
 
 };
 
+const LSMDeleteProject = (storage, selectedProject) => {
+    const selectedProjectId = selectedProject.id;
+
+    // delete the project
+    let newStorage = storage.filter((projectItem) => projectItem.id !== selectedProjectId);
+    // update the local storage
+    localStorage.setItem('donezoData', JSON.stringify(newStorage));
+    // return to update our main storage array
+    return newStorage;
+};
+
 export{
     LSMCheckStorage,
     LSMEditProjectName,
     LSMCreateProject,
     LSMAddNewProject,
+    LSMDeleteProject,
 }

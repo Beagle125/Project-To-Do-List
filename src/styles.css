@@ -134,7 +134,7 @@ html, body{
 /*Scrollable Styles and Logic*/
 .scrollable{
   display: table;
-  max-height: min(400px, 70%);
+  max-height: max(400px, 70%);
   width: 100%;
   overflow-y: auto;
 }
@@ -171,6 +171,59 @@ html, body{
   transform: scale(1.2);
 }
 
+/* Base Modal styles */
+dialog[open]{
+  align-self: center;
+  align-items: center;
+  background-color: var(--baseBlack);
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: grid;
+  gap: 12px;
+  grid-template-rows: 1fr 1fr;
+  height: 250px;
+  position: fixed;
+  z-index: 0;
+  overflow: hidden;
+}
+
+dialog::backdrop{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader{
+  color: white;
+  font-family: var(--headerFont), var(--bodyFont);
+  font-size: var(--headerSize);
+  grid-row: 1 / 2;
+}
+
+dialog form{
+  display: flex;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#deleteModal form{
+  justify-content: center;
+}
+
+#deleteModal p span{
+  color: var(--baseRed);
+}
+.formInput{
+  background-color: var(--darkBlack);
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  font-family: var(--bodyFont);
+  height: 3rem;
+  width: 70%;
+}
+
 /* Save button styles */
 .saveBtn{
   background-color: var(--mainOrange);
@@ -190,50 +243,24 @@ html, body{
   transform: scale(1.2);
 }
 
-/* Base Modal styles */
-dialog[open]{
-  align-self: center;
-  align-items: center;
-  background-color: var(--baseBlack);
-  border: 0;
-  border-radius: 10px;
-  box-sizing: border-box;
-  display: grid;
-  gap: 12px;
-  grid-template-rows: 1fr 3fr 1fr;
-  height: 200px;
-  position: fixed;
-  z-index: 0;
-  overflow: hidden;
-}
-
-dialog::backdrop{
-  background-color: rgba(0, 0, 0, 0.5);
-}
-/* Edit Modal Styles */
-.modalHeader{
-  color: white;
-  font-family: var(--headerFont), var(--bodyFont);
-  font-size: var(--headerSize);
-  grid-row: 1 / 2;
-}
-
-dialog form{
-  display: flex;
-  grid-column: 1 / 3;
-  grid-row: 2 / 3;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.formInput{
-  background-color: var(--darkBlack);
+/* Confirm Delete button styles */
+.confirmDeleteBtn{
+  background-color: var(--mainOrange);
   border: 0;
   border-radius: 10px;
   color: white;
   font-family: var(--bodyFont);
+  font-size: var(--bodySize);
+  grid-column: 1 / 3;
   height: 3rem;
-  width: 70%;
+  width: 40%;
+  transition: all 0.3s ease;
+}
+
+.confirmDeleteBtn:hover{
+  background-color: var(--baseRed);
+  filter: brightness(1.3);
+  transform: scale(1.2);
 }
 
 /*Dashboard styles*/

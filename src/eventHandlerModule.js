@@ -1,5 +1,10 @@
-import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem, DMMClickedProjectItem, DMMOpenEditModal, DMMCloseEditModal, DMMOpenAddModal, DMMCloseAddModal, DMMCreateProjectItem} from "./domManipulationModule.js";
-import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject } from "./localStorageModule.js";
+import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem, 
+       DMMClickedProjectItem, DMMCreateProjectItem,  
+       DMMOpenEditModal, DMMCloseEditModal, 
+       DMMOpenAddModal, DMMCloseAddModal, 
+       DMMOpenDeleteModal, DMMCloseDeleteModal,
+       DMMDeleteProject} from "./domManipulationModule.js";
+import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject } from "./localStorageModule.js";
 
 const EHMDetectEvent = (mainContainer, storage) => {
     const addProjectBtn = document.querySelector('#sidebar .addBtn');
@@ -32,8 +37,6 @@ const EHMDetectEvent = (mainContainer, storage) => {
     // This will serve as the unhover event for the project items
     document.addEventListener('mousemove', (event) => {
         let targetDiv = event.target.closest('.projectItem');
-        
-        console.log(isProjectHovered);
         if (document.querySelector('.projectItemRight'))
             isProjectHovered = true;
         if (isProjectHovered && !event.target.classList.contains('projectContent')){
@@ -58,21 +61,28 @@ const EHMDetectEvent = (mainContainer, storage) => {
             DMMClickedProjectItem(targetDiv);
             DMMOpenEditModal();
         }
-    });
+        // add project 
+        else if (event.target.classList.contains('addBtn')){
+            DMMOpenAddModal();
+        }
+        // delete project
+        else if (event.target.classList.contains('deleteBtn')){
+            const selectedProject = targetDiv;
+            let projectTitle;
+            storage.forEach((projectItem) => {
+            if (projectItem.id === selectedProject.id)
+                projectTitle = projectItem.title
+            });
 
-
-    // Add a new project event
-    addProjectBtn.addEventListener('click', () => {
-        DMMOpenAddModal();
-    });
-
-    // Close modal event
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('closeBtn')){
+            DMMClickedProjectItem(targetDiv);
+            DMMOpenDeleteModal(projectTitle);
+        }
+        // close modal
+        else if (event.target.classList.contains('closeBtn')){
              DMMCloseEditModal();
              DMMCloseAddModal();
+             DMMCloseDeleteModal();
         }
-           
     });
 
     // submit event using event delegation
@@ -111,6 +121,14 @@ const EHMDetectEvent = (mainContainer, storage) => {
             // Close the modal
             DMMCloseAddModal();
             addFormInput.value = '';
+        }
+        else if (event.target.classList.contains('deleteProjectForm')){     
+            const selectedProject = document.querySelector('.selectedProject');
+            storage = LSMDeleteProject(storage, selectedProject);
+            DMMDeleteProject(storage, selectedProject);
+            DMMCloseDeleteModal();
+
+            console.log(storage);
         }
     });
 }

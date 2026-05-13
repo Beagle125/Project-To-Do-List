@@ -221,6 +221,66 @@ const DMMCloseAddModal = () => {
     modal.close();
 };
 
+const DMMCreateDeleteModal = (mainContainer) => {
+    const modal = document.createElement('dialog');
+    modal.id = 'deleteModal';
+
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImg;
+    closeBtn.className = 'closeBtn';
+
+    const header = document.createElement('p');
+    header.className = 'modalHeader';
+    header.textContent = 'Confirm the deletion of ';
+
+    const breakLine = document.createElement('br');
+    header.appendChild(breakLine);
+
+    const span = document.createElement('span');
+    span.textContent = '';
+
+    header.appendChild(span);
+
+    modal.appendChild(header);
+    modal.appendChild(closeBtn);
+
+    const form = document.createElement('form');
+    form.className = 'deleteProjectForm';
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'confirmDeleteBtn';
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.type = 'submit';
+
+    form.appendChild(deleteBtn)
+    modal.appendChild(form);
+
+    mainContainer.appendChild(modal);
+};
+
+const DMMOpenDeleteModal = (projectTitle) => {
+    const modal = document.getElementById('deleteModal');
+    //const pTag = modal.querySelector('.headerModal');
+    const span = modal.querySelector('span');
+
+    span.textContent = projectTitle;
+
+    modal.showModal();
+}
+const DMMCloseDeleteModal = () => {
+    const modal = document.getElementById('deleteModal');
+    modal.close()
+}
+
+const DMMDeleteProject = (storage, projectItem) => {
+    projectItem.remove();
+    if (storage){
+        const firstProject = document.querySelector('.projectItem');
+        firstProject.classList.add('selectedProject');
+    }
+
+};
+
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -234,4 +294,8 @@ export{
     DMMCreateAddModal,
     DMMOpenAddModal,
     DMMCloseAddModal,
+    DMMCreateDeleteModal,
+    DMMOpenDeleteModal,
+    DMMCloseDeleteModal,
+    DMMDeleteProject,
 }
