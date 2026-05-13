@@ -22,11 +22,15 @@ html, body{
     /* Setting the height and width*/
     height: 100vh;
     width: 100vw;
+
+    background-color: var(--baseWhite);
+    box-sizing: border-box;
 }
 
 /*Main Content Styles*/
 #content{
     background-color: var(--baseWhite);
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 4fr;
     height: 100%;
@@ -36,7 +40,8 @@ html, body{
 /*Sidebaar styles*/
 #sidebar{
   background-color: var(--baseBlack);
-  display: grid; /*Subject to change*/
+  box-sizing: border-box;
+  display: grid; 
   grid-column: 1 / 2;
   grid-template-rows: 1fr 3fr 0.5fr;
   height: 100%;
@@ -127,6 +132,7 @@ html, body{
 
 /*Scrollable Styles and Logic*/
 .scrollable{
+  max-height: 70%;
   width: 100%;
   overflow-y: auto;
 }
@@ -230,6 +236,7 @@ dialog form{
 
 /*Dashboard styles*/
 #dashboard{
+  box-sizing: border-box;
   grid-column: 2 / 3;
   height: 100%;
 }
