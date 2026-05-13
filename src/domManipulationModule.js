@@ -132,7 +132,7 @@ const DMMCreateEditModal = (mainContainer) => {
     form.autocomplete = 'off';
 
     formInput.type = 'text';
-    formInput.placeholder = 'New project name';
+    formInput.placeholder = 'New name';
     formInput.id = 'editformInput';
     formInput.className = 'formInput';
     formInput.required = true;
@@ -154,9 +154,57 @@ const DMMOpenEditModal = () => {
 
 const DMMCloseEditModal = () => {
     const modal = document.getElementById('editModal'); 
-     modal.close();
+    modal.close();
 };
 
+
+const DMMCreateAddModal = (mainContainer) => {
+    const modal = document.createElement('dialog');
+    modal.id = 'addModal';
+
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImg;
+    closeBtn.className = 'closeBtn';
+
+    const header = document.createElement('p');
+    header.className = 'modalHeader';
+    header.textContent = 'Give a name to your new project';
+
+    modal.appendChild(header);
+    modal.appendChild(closeBtn);
+
+    const form = document.createElement('form');
+    const formInput =  document.createElement('input');
+    const saveBtn = document.createElement('button');
+
+    form.className = 'addProjectForm';
+    form.autocomplete = 'off';
+
+    formInput.type = 'text';
+    formInput.placeholder = 'New project name';
+    formInput.id = 'addFormInput';
+    formInput.className = 'formInput';
+    formInput.required = true;
+
+    saveBtn.textContent = 'Create';
+    saveBtn.className = 'saveBtn';
+
+    form.appendChild(formInput);
+    form.appendChild(saveBtn);
+    modal.appendChild(form);
+
+    mainContainer.appendChild(modal);
+};
+
+const DMMOpenAddModal = () => {
+    const modal = document.getElementById('addModal');
+    modal.showModal();
+};
+
+const DMMCloseAddModal = () => {
+    const modal = document.getElementById('addModal'); 
+    modal.close();
+};
 
 export{
     DMMCreateProjectItem,
@@ -167,4 +215,7 @@ export{
     DMMCreateEditModal,
     DMMOpenEditModal,
     DMMCloseEditModal,
+    DMMCreateAddModal,
+    DMMOpenAddModal,
+    DMMCloseAddModal,
 }

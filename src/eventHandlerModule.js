@@ -1,8 +1,9 @@
-import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem, DMMClickedProjectItem, DMMOpenEditModal, DMMCloseEditModal } from "./domManipulationModule.js";
+import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem, DMMClickedProjectItem, DMMOpenEditModal, DMMCloseEditModal, DMMOpenAddModal, DMMCloseAddModal} from "./domManipulationModule.js";
 import { LSMEditProjectName } from "./localStorageModule.js";
 
 const EHMDetectEvent = (mainContainer, storage) => {
     const projects = document.querySelectorAll('.projectItem');
+    const addProjectBtn = document.querySelector('#sidebar .addBtn');
 
     // Hover event for each project item
     projects.forEach((projectItem) => {
@@ -25,10 +26,19 @@ const EHMDetectEvent = (mainContainer, storage) => {
         });
     });
 
+
+    // Add a new project event
+    addProjectBtn.addEventListener('click', () => {
+        DMMOpenAddModal();
+    });
+
     // Close modal event
     document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('closeBtn'))
-            DMMCloseEditModal();
+        if (event.target.classList.contains('closeBtn')){
+             DMMCloseEditModal();
+             DMMCloseAddModal();
+        }
+           
     });
 
     // submit event

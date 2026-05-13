@@ -14,8 +14,9 @@ import * as myModules from './myModules.js';
         myModules.LSMCheckStorage(storage);
         // Recheck storage again if ever it is updated
         storage = JSON.parse(localStorage.getItem('donezoData'));
-            // Create the modal
-        myModules.DMMCreateEditModal(mainContainer)
+        // Create the modal
+        myModules.DMMCreateEditModal(mainContainer);
+        myModules.DMMCreateAddModal(mainContainer);
         // Create the sidebar
         myModules.DMMCreateSideBar(mainContainer, storage);
     };
