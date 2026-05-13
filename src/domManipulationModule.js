@@ -26,6 +26,9 @@ const DMMCreateProjectItem = (project, scrollable) => {
 
     projectItemLeft.className = 'projectItemLeft';
     projectItem.appendChild(projectItemLeft);
+    // if this is the only project
+    if (!scrollable.querySelector('.selectedProject'))
+        projectItem.classList.add('selectedProject');
     // Append the newly created project item to the scrollable
     scrollable.appendChild(projectItem);
 };
@@ -59,8 +62,12 @@ const DMMCreateSideBar = (mainContainer, storage) => {
     }
 
     // Add the selectedProject class name to the first project
-    const firstProject = scrollable.querySelector('div:first-of-type');
-    firstProject.classList.add('selectedProject');
+    if (storage.length > 0 && !scrollable.querySelector('.selectedProject')){
+        const firstProject = scrollable.querySelector('.projectItem');
+        firstProject.classList.add('selectedProject');
+        console.log(firstProject);
+    }
+
 
     //Stitch everything together
     logo.appendChild(logoImageElement);
@@ -274,7 +281,7 @@ const DMMCloseDeleteModal = () => {
 
 const DMMDeleteProject = (storage, projectItem) => {
     projectItem.remove();
-    if (storage){
+    if (storage.length > 0){
         const firstProject = document.querySelector('.projectItem');
         firstProject.classList.add('selectedProject');
     }
