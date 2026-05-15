@@ -203,7 +203,7 @@ const DMMCreateAddModal = (mainContainer) => {
     form.autocomplete = 'off';
 
     formInput.type = 'text';
-    formInput.placeholder = 'New project name';
+    formInput.placeholder = 'Machine Project 1';
     formInput.id = 'addFormInput';
     formInput.className = 'formInput';
     formInput.required = true;

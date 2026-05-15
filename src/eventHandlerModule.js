@@ -12,35 +12,21 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
     // Hover event for each project item using event delegation
     document.addEventListener('mouseover', (event) => {
-        let targetDiv = event.target.closest('.projectItem');
-        if (targetDiv && !targetDiv.querySelector('.projectItemRight')){
+        let nearestProjectItem = event.target.closest('.projectItem');
+        if (nearestProjectItem && !nearestProjectItem.querySelector('.projectItemRight')){
             let projectItem = event.target;
             DMMHoverProjectItem(projectItem);
             isProjectHovered = true;
         }
     });
 
-    /*
-    // unhover event for each project item using event delegation
-    document.addEventListener('mouseout', (event) => {
-        let targetDiv = event.target.closest('.projectItem');
-        let destination = event.relatedTarget;
-        let timer;
-        if (targetDiv === event.target && !targetDiv.contains(destination)){ // this is not fully working. When you hover over outside the sidebar
-            let projectItem = event.target;
-            DMMUnhoverProjectItem(projectItem);  
-            isProjectHovered = false;
-        }
-    });
-    */
-    
     // This will serve as the unhover event for the project items
     document.addEventListener('mousemove', (event) => {
-        let targetDiv = event.target.closest('.projectItem');
+        let nearestProjectItem = event.target.closest('.projectItem');
         if (document.querySelector('.projectItemRight'))
             isProjectHovered = true;
         if (isProjectHovered && !event.target.classList.contains('projectContent')){
-            let projectItem = targetDiv;
+            let projectItem = nearestProjectItem;
             DMMUnhoverProjectItem(projectItem);
             isProjectHovered = false;
         }
@@ -50,15 +36,15 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
     // click events using event delegation
     mainContainer.addEventListener('click', (event) => {
-        const targetDiv = event.target.closest('.projectItem');
+        const nearestProjectItem = event.target.closest('.projectItem');
         // projectItem select
-        if (event.target === targetDiv){
+        if (event.target === nearestProjectItem){
             const projectItem = event.target;
             DMMClickedProjectItem(projectItem);  
         }      
         // edit Project name
         else if (event.target.classList.contains('editBtn')){
-            DMMClickedProjectItem(targetDiv);
+            DMMClickedProjectItem(nearestProjectItem);
             DMMOpenEditModal();
         }
         // add project 
@@ -67,14 +53,14 @@ const EHMDetectEvent = (mainContainer, storage) => {
         }
         // delete project
         else if (event.target.classList.contains('deleteBtn')){
-            const selectedProject = targetDiv;
+            const selectedProject = nearestProjectItem;
             let projectTitle;
             storage.forEach((projectItem) => {
             if (projectItem.id === selectedProject.id)
                 projectTitle = projectItem.title
             });
 
-            DMMClickedProjectItem(targetDiv);
+            DMMClickedProjectItem(nearestProjectItem);
             DMMOpenDeleteModal(projectTitle);
         }
         // close modal
