@@ -298,6 +298,7 @@ const DMMPopulateDashboard = (storage, selectedProjectId, dashboardContainer) =>
     const dashboardTotal = document.createElement('p');
     const addBtn = document.createElement('button');
 
+    dashboardContainer.replaceChildren();
     // Find the project of interest
     let selectedProject = storage.find(project => project.id === selectedProjectId);
     let total = selectedProject.todos.length;

@@ -3,7 +3,7 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMOpenEditModal, DMMCloseEditModal, 
        DMMOpenAddModal, DMMCloseAddModal, 
        DMMOpenDeleteModal, DMMCloseDeleteModal,
-       DMMDeleteProject} from "./domManipulationModule.js";
+       DMMDeleteProject, DMMPopulateDashboard} from "./domManipulationModule.js";
 import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject } from "./localStorageModule.js";
 
 const EHMDetectEvent = (mainContainer, storage) => {
@@ -36,16 +36,32 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
     // click events using event delegation
     mainContainer.addEventListener('click', (event) => {
+        /*
+        let nearestProjectItem;
+        let projectItem;
+        let selectedProjectId;
+        let dashboardContainer;
+        if (event.target.classList.contains('.projectItem')){
+            nearestProjectItem = event.target.closest('.projectItem');
+            projectItem = event.target;
+            selectedProjectId = nearestProjectItem.id;
+            dashboardContainer = document.querySelector('#dashboard');
+        }
+            */
+
         const nearestProjectItem = event.target.closest('.projectItem');
+        const dashboardContainer = document.querySelector('#dashboard');
+
         // projectItem select
         if (event.target === nearestProjectItem){
-            const projectItem = event.target;
-            DMMClickedProjectItem(projectItem);  
+            DMMClickedProjectItem(nearestProjectItem);
+            DMMPopulateDashboard(storage, nearestProjectItem.id, dashboardContainer); 
         }      
         // edit Project name
         else if (event.target.classList.contains('editBtn')){
             DMMClickedProjectItem(nearestProjectItem);
             DMMOpenEditModal();
+            DMMPopulateDashboard(storage, nearestProjectItem.id, dashboardContainer); 
         }
         // add project 
         else if (event.target.classList.contains('addBtn')){
@@ -62,6 +78,7 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
             DMMClickedProjectItem(nearestProjectItem);
             DMMOpenDeleteModal(projectTitle);
+            DMMPopulateDashboard(storage, selectedProject.id, dashboardContainer); 
         }
         // close modal
         else if (event.target.classList.contains('closeBtn')){
@@ -113,7 +130,9 @@ const EHMDetectEvent = (mainContainer, storage) => {
             storage = LSMDeleteProject(storage, selectedProject);
             DMMDeleteProject(storage, selectedProject);
             DMMCloseDeleteModal();
-
+            const newlySelectedProject = document.querySelector('.selectedProject');
+            const dashboardContainer = document.querySelector('#dashboard');
+            DMMPopulateDashboard(storage, newlySelectedProject.id, dashboardContainer);
             console.log(storage);
         }
     });

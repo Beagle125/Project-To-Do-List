@@ -276,8 +276,9 @@ dialog form{
   align-items: center;
   border-bottom: 2px dotted var(--baseBlack);
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-items: center;
 }
 
 
