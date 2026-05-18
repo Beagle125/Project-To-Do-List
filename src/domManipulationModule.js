@@ -288,6 +288,48 @@ const DMMDeleteProject = (storage, projectItem) => {
 
 };
 
+const DMMPopulateDashboard = (storage, selectedProjectId, dashboardContainer) => {
+    const dashboardHeader = document.createElement('div');
+    const dashboardBody = document.createElement('div');
+    const dashboardHeaderLeft = document.createElement('div');
+    const dashboardHeaderText = document.createElement('p');
+    const dashboardStats = document.createElement('div');
+    const dashboardPending = document.createElement('p');
+    const dashboardTotal = document.createElement('p');
+    const addBtn = document.createElement('button');
+
+    // Find the project of interest
+    let selectedProject = storage.find(project => project.id === selectedProjectId);
+    let total = selectedProject.todos.length;
+    let pending = selectedProject.todos.filter(task => task.marked === false).length;
+
+    // Create the header
+    dashboardHeader.className = 'dashboardHeader';
+    dashboardHeaderText.className = 'dashboardHeaderText';
+    dashboardHeaderText.textContent = selectedProject.title;
+
+    dashboardStats.className = 'dashboardStats';
+    dashboardPending.className = 'dashboardPending';
+    dashboardPending.textContent =`${pending} pending`;
+    dashboardTotal.className = 'dashboardTotal';
+    dashboardTotal.textContent =`${total} total`;
+
+    addBtn.className = 'addBtn';
+    addBtn.textContent = 'Add Task';
+
+    dashboardStats.appendChild(dashboardPending);
+    dashboardStats.appendChild(dashboardTotal);
+
+    dashboardHeaderLeft.appendChild(dashboardHeaderText);
+    dashboardHeaderLeft.appendChild(dashboardStats);
+
+    dashboardHeader.appendChild(dashboardHeaderLeft);
+    dashboardHeader.appendChild(addBtn);
+
+    dashboardContainer.appendChild(dashboardHeader);
+
+};
+
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -305,4 +347,5 @@ export{
     DMMOpenDeleteModal,
     DMMCloseDeleteModal,
     DMMDeleteProject,
+    DMMPopulateDashboard,
 }

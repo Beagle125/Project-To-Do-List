@@ -266,6 +266,64 @@ dialog form{
 /*Dashboard styles*/
 #dashboard{
   box-sizing: border-box;
+  display: grid;
   grid-column: 2 / 3;
+  grid-template-rows: 1fr 4fr;
   height: 100%;
+}
+
+.dashboardHeader{
+  align-items: center;
+  border-bottom: 2px dotted var(--baseBlack);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.dashboardHeader div{ /*This is for the left side of the header*/
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.dashboardHeaderText{
+  color: var(--baseBlack);
+  font-family: var(--headerFont);
+  font-size: var(--headerSize);
+}
+
+.dashboardStats{
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-family: var(--bodyFont);
+  font-size: var(--bodySize);
+  gap: 0px;
+  height: 20%;
+  justify-content: center;
+}
+
+.dashboardStats p{
+  color: var(--baseBlack);
+  border-bottom: 3px dotted var(--baseBlack);
+}
+.dashboardHeader .addBtn{
+  background-color: var(--mainOrange);
+  border: 1px solid var(--mainOrange);
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: var(--baseWhite);
+  font-family: var(--bodyFont);
+  height: 2rem;
+  width: 6rem;
+  transition: all 0.3s ease;
+}
+
+.dashboardHeader .addBtn:hover{
+  background-color: var(--baseWhite);
+  border: 2px dotted var(--mainOrange);
+  color: var(--mainOrange);
 }

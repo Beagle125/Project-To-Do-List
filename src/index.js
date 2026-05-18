@@ -22,6 +22,10 @@ import * as myModules from './myModules.js';
         myModules.DMMCreateSideBar(mainContainer, storage);
         // Create the dashboard
         myModules.DMMCreateDashboard(mainContainer);
+        // Populate the dashboard
+        let selectedProjectId = document.querySelector('.selectedProject').id;
+        let dashboard = document.querySelector('#dashboard');
+        myModules.DMMPopulateDashboard(storage, selectedProjectId, dashboard);
     };
 
     // Start of the website

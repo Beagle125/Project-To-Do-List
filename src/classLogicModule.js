@@ -7,6 +7,18 @@ const Project = class{
     }
 }
 
+const Task = class{
+    constructor(id, title, description, due, priority, marked){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.due = due;
+        this.priority = priority;
+        this.marked = marked;
+    }
+}
+
 export{
-    Project as "CLMProject"
+    Project as "CLMProject",
+    Task as "CLMTask",
 }
