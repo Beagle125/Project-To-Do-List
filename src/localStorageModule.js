@@ -1,4 +1,5 @@
 import { CLMProject } from "./classLogicModule.js";
+import { CLMTask } from "./classLogicModule.js";
 
 const LSMCreateProject = (projectTitle) => {
     let project = new CLMProject(self.crypto.randomUUID(), projectTitle, []);
@@ -10,12 +11,28 @@ const LSMAddNewProject = (storage, project) => {
     localStorage.setItem('donezoData', JSON.stringify(storage));
 };
 
+const LSMCreateTask = (taskTitle, taskDescription, taskDue, taskPriority, taskMarked) => {
+    let task = new CLMTask(self.crypto.randomUUID(),  taskTitle, taskDescription, taskDue, taskPriority, taskMarked);
+    return task;
+};
+
+const LSMAddNewTask = (storage, projectId, task) => {
+    let projectIndex = storage.findIndex(project => project.id === projectId);
+    storage[projectIndex].todos.push(task);
+    localStorage.setItem('donezoData', JSON.stringify(storage));
+};
+
 const LSMCheckStorage = (storage) => {
     /* Intial check of storage item*/
     if (!storage){
+        // Add project 1
         let defaultData = []
         let defaultProject1 = LSMCreateProject('Project 1');
         LSMAddNewProject(defaultData, defaultProject1);
+        // Add task 1
+        let task1 = LSMCreateTask('Todo1', 'My very first todo', 'March 16, 2007', 'High', false); //date formatting and priority is not yet applied here
+        let projectId = defaultData[0].id;
+        LSMAddNewTask(defaultData, projectId, task1);
     }
 }
 
