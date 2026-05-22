@@ -352,7 +352,7 @@ dialog form{
 }
 
 .taskItemEasy{
-  box-shadow: var(--baseRed) -10px 0px;
+  box-shadow: var(--baseGreen) -10px 0px;
 }
 
 .taskItemMedium{

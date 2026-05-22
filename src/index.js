@@ -30,8 +30,7 @@ import * as myModules from './myModules.js';
 
     // Start of the website
     setUp();
-
-    localStorage.clear();
+    
     // event detections
     myModules.EHMDetectEvent(mainContainer, storage);
 })();
