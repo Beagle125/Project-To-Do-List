@@ -6,6 +6,9 @@ import deleteImg from '../static/delete.svg';
 import editImg from '../static/edit.svg';
 import closeImg from  '../static/remove.svg';
 import saveImg from '../static/save.svg';
+import checkboxImg from '../static/check.svg';
+import uncheckboxImg from '../static/uncheck.svg';
+import calendarImg from '../static/calendar.svg';
 
 const DMMCreateProjectItem = (project, scrollable) => {
     // Create and add the proper attributes to projectItem
@@ -31,6 +34,78 @@ const DMMCreateProjectItem = (project, scrollable) => {
         projectItem.classList.add('selectedProject');
     // Append the newly created project item to the scrollable
     scrollable.appendChild(projectItem);
+};
+
+const DMMCreateTaskItem = (task, dashboardBody) => {
+    // main container
+    const taskItem = document.createElement('div');
+    taskItem.classList.add('taskItem');
+    if (task.marked)
+        taskItem.classList.add('taskMarked');
+
+    // left side which simply a single button
+    const checkBtn = document.createElement('img');
+    checkBtn.className = 'taskItemCheckbox';
+    if (task.marked)
+        checkBtn.src = checkboxImg;
+    else
+        checkBtn.src = uncheckboxImg;
+
+    // Middle of the task item
+    const title = document.createElement('p');
+    title.className = 'taskItemHeader';
+    title.textContent = task.title;
+
+    const dateText = document.createElement('p');
+    dateText.className = 'taskItemDate';
+    dateText.textContent = task.due;
+    const dateImg = document.createElement('img');
+    dateImg.src = calendarImg;
+    const date = document.createElement('div');
+    date.appendChild(dateImg);
+    date.appendChild(dateText);
+
+    const priority = document.createElement('div');
+    if (task.priority === 0){
+        priority.className = 'taskEasy';
+        priority.textContent = 'EASY';
+        taskItem.classList.add('taskItemEasy');
+    } 
+    else if (task.priority === 1){
+        priority.className = 'taskMedium';
+        priority.textContent = 'MEDIUM';
+        taskItem.classList.add('taskItemMedium');
+    } 
+    else{
+        priority.className = 'taskHard';
+        priority.textContent = 'HARD';
+        taskItem.classList.add('taskItemHard');
+    }  
+    
+
+    const middleContent = document.createElement('div');
+    middleContent.appendChild(title);
+    middleContent.appendChild(date);
+    middleContent.appendChild(priority);
+
+    // right side of task item
+    const buttonDiv = document.createElement('div');
+    const editBtn = document.createElement('img');
+    editBtn.src = editImg;
+    editBtn.className = 'editBtn';
+    const deleteBtn = document.createElement('img');
+    deleteBtn.src = deleteImg;
+    deleteBtn.className = 'deleteBtn';
+    buttonDiv.appendChild(editBtn);
+    buttonDiv.appendChild(deleteBtn);
+
+    // append everything
+    taskItem.appendChild(checkBtn);
+    taskItem.appendChild(middleContent);
+    taskItem.appendChild(buttonDiv);
+
+    dashboardBody.appendChild(taskItem);
+
 };
 
 const DMMCreateSideBar = (mainContainer, storage) => {
@@ -289,6 +364,18 @@ const DMMDeleteProject = (storage, projectItem) => {
 };
 
 const DMMPopulateDashboard = (storage, selectedProjectId, dashboardContainer) => {
+    // Remove exsiting child nodes
+    dashboardContainer.replaceChildren();
+
+    // Create the header
+    DMMDashboardHeader(storage, selectedProjectId, dashboardContainer);
+
+    // Create the body
+    DMMDashboardBody(storage, selectedProjectId, dashboardContainer);
+};
+
+const DMMDashboardHeader = (storage, selectedProjectId, dashboardContainer) => {
+    // Declare variables
     const dashboardHeader = document.createElement('div');
     const dashboardBody = document.createElement('div');
     const dashboardHeaderLeft = document.createElement('div');
@@ -298,7 +385,7 @@ const DMMPopulateDashboard = (storage, selectedProjectId, dashboardContainer) =>
     const dashboardTotal = document.createElement('p');
     const addBtn = document.createElement('button');
 
-    dashboardContainer.replaceChildren();
+
     // Find the project of interest
     let selectedProject = storage.find(project => project.id === selectedProjectId);
     let total = selectedProject.todos.length;
@@ -328,9 +415,22 @@ const DMMPopulateDashboard = (storage, selectedProjectId, dashboardContainer) =>
     dashboardHeader.appendChild(addBtn);
 
     dashboardContainer.appendChild(dashboardHeader);
-
 };
 
+const DMMDashboardBody = (storage, selectedProjectId, dashboardContainer) => {
+    // Declare variables
+    const project = storage.find(projectItem => projectItem.id === selectedProjectId);
+    const taskArray = project.todos;
+    const dashboardBody = document.createElement('div');
+    dashboardBody.className = 'dashboardBody';
+
+    taskArray.forEach((task) => {
+        DMMCreateTaskItem(task, dashboardBody);
+    });
+
+    dashboardContainer.appendChild(dashboardBody);
+
+};
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,

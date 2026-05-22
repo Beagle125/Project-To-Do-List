@@ -328,3 +328,79 @@ dialog form{
   border: 2px dotted var(--mainOrange);
   color: var(--mainOrange);
 }
+
+/*dashboard body styles*/
+.dashboardBody{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+/*Task item styles*/
+.taskItem{
+  background-color: var(--baseBlack);
+  border-radius: 10px;
+  color: white;
+  display: grid;
+  font-family: var(--bodyFont);
+  font-size: var(--bodyFont);
+  grid-template-columns: 1fr 3fr 1fr;
+  padding: 1rem 0 1rem 0;
+  width: 60%;
+}
+
+.taskItemEasy{
+  box-shadow: var(--baseRed) -10px 0px;
+}
+
+.taskItemMedium{
+  box-shadow: var(--baseYellow) -10px 0px;
+}
+
+.taskItemHard{
+  box-shadow: var(--baseRed) -10px 0px;
+}
+
+.taskItemCheckbox{
+  margin-left: 1rem;
+}
+
+.taskItemHeader{
+  margin: 0 0 0 0;
+  font-family: var(--headerFont);
+  font-size: var(--headerSize);
+}
+
+.taskItem div div:first-of-type{ /*this is the date*/
+  display: flex;
+}
+
+.taskItem div div:last-of-type{ /*This is the priority*/
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 6rem;
+  text-align: center;
+}
+
+.taskEasy{
+  background-color: var(--baseGreen);
+}
+
+.taskMedium{
+  background-color: var(--baseYellow);
+}
+
+.taskHard{
+  background-color: var(--baseRed);
+}
+
+.taskItem>div:last-of-type{
+  align-items: center;
+  display: flex;
+  height: 30%;
+  justify-content: center;
+  justify-self: center;
+  width: 30%;
+}
