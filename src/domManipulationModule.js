@@ -42,6 +42,7 @@ const DMMCreateTaskItem = (task, dashboardBody) => {
     taskItem.classList.add('taskItem');
     if (task.marked)
         taskItem.classList.add('taskMarked');
+    taskItem.id = task.id;
 
     // left side which simply a single button
     const checkBtn = document.createElement('img');

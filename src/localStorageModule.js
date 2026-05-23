@@ -22,6 +22,22 @@ const LSMAddNewTask = (storage, projectId, task) => {
     localStorage.setItem('donezoData', JSON.stringify(storage));
 };
 
+const LSMTickTask = (storage, taskItem) => {
+    const projectId = document.querySelector('.selectedProject').id;
+    const taskId = taskItem.id;
+    const projectIndex = storage.findIndex(project => project.id === projectId);
+
+    console.log(projectIndex);
+
+    const taskIndex = storage[projectIndex].todos.findIndex(task => task.id === taskId);
+
+    // change the value of the marked
+    storage[projectIndex].todos[taskIndex].marked = !(storage[projectIndex].todos[taskIndex].marked);
+
+    // update local storage
+    localStorage.setItem('donezoData', JSON.stringify(storage));
+};
+
 const LSMCheckStorage = (storage) => {
     /* Intial check of storage item*/
     if (!storage){
@@ -66,4 +82,5 @@ export{
     LSMCreateProject,
     LSMAddNewProject,
     LSMDeleteProject,
+    LSMTickTask,
 }

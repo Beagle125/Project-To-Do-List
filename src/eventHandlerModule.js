@@ -3,8 +3,8 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMOpenEditModal, DMMCloseEditModal, 
        DMMOpenAddModal, DMMCloseAddModal, 
        DMMOpenDeleteModal, DMMCloseDeleteModal,
-       DMMDeleteProject, DMMPopulateDashboard} from "./domManipulationModule.js";
-import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject } from "./localStorageModule.js";
+       DMMDeleteProject, DMMPopulateDashboard,} from "./domManipulationModule.js";
+import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, LSMTickTask, } from "./localStorageModule.js";
 
 const EHMDetectEvent = (mainContainer, storage) => {
     const addProjectBtn = document.querySelector('#sidebar .addBtn');
@@ -36,21 +36,9 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
     // click events using event delegation
     mainContainer.addEventListener('click', (event) => {
-        /*
-        let nearestProjectItem;
-        let projectItem;
-        let selectedProjectId;
-        let dashboardContainer;
-        if (event.target.classList.contains('.projectItem')){
-            nearestProjectItem = event.target.closest('.projectItem');
-            projectItem = event.target;
-            selectedProjectId = nearestProjectItem.id;
-            dashboardContainer = document.querySelector('#dashboard');
-        }
-            */
-
         const nearestProjectItem = event.target.closest('.projectItem');
         const dashboardContainer = document.querySelector('#dashboard');
+        const nearestTaskItem = event.target.closest('.taskItem');
 
         // projectItem select
         if (event.target === nearestProjectItem){
@@ -85,6 +73,13 @@ const EHMDetectEvent = (mainContainer, storage) => {
              DMMCloseEditModal();
              DMMCloseAddModal();
              DMMCloseDeleteModal();
+        }
+        // mark task as complete
+        else if (event.target.classList.contains('taskItemCheckbox')){
+            const selectedProjectId = document.querySelector('.selectedProject').id;
+            const dashboard = document.querySelector('#dashboard');
+            LSMTickTask(storage, nearestTaskItem);
+            DMMPopulateDashboard(storage, selectedProjectId, dashboard);
         }
     });
 

@@ -354,6 +354,12 @@ dialog form{
   width: 60%;
 }
 
+.taskMarked{
+  color: rgba(0, 0, 0, 0.4);
+
+  text-decoration: line-through;
+}
+
 .taskItem:hover{
   transform: scale(1.1);
 }
