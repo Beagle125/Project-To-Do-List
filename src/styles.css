@@ -417,3 +417,8 @@ dialog form{
   justify-self: center;
   width: 30%;
 }
+
+.dashboardBody>p{ /*placeholder styles*/
+  font-family: var(--bodyFont);
+  font-size: var(--bodySize);
+}

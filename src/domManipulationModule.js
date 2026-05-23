@@ -425,12 +425,18 @@ const DMMDashboardBody = (storage, selectedProjectId, dashboardContainer) => {
     const dashboardBody = document.createElement('div');
     dashboardBody.className = 'dashboardBody';
 
-    taskArray.forEach((task) => {
-        DMMCreateTaskItem(task, dashboardBody);
-    });
+    if (taskArray.length > 0){
+        taskArray.forEach((task) => {
+            DMMCreateTaskItem(task, dashboardBody);
+        });
+    }
+    else{
+        const placeholder = document.createElement('p');
+        placeholder.textContent = 'No tasks yet🥳'
+        dashboardBody.appendChild(placeholder);
+    }
 
     dashboardContainer.appendChild(dashboardBody);
-
 };
 export{
     DMMCreateProjectItem,
