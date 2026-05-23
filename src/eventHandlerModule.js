@@ -12,9 +12,9 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
     // Hover event for each project item using event delegation
     document.addEventListener('mouseover', (event) => {
-        let nearestProjectItem = event.target.closest('.projectItem');
+        const nearestProjectItem = event.target.closest('.projectItem');
         if (nearestProjectItem && !nearestProjectItem.querySelector('.projectItemRight')){
-            let projectItem = event.target;
+            const projectItem = event.target;
             DMMHoverProjectItem(projectItem);
             isProjectHovered = true;
         }
@@ -22,7 +22,7 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
     // This will serve as the unhover event for the project items
     document.addEventListener('mousemove', (event) => {
-        let nearestProjectItem = event.target.closest('.projectItem');
+        const nearestProjectItem = event.target.closest('.projectItem');
         if (document.querySelector('.projectItemRight'))
             isProjectHovered = true;
         if (isProjectHovered && !event.target.classList.contains('projectContent')){
@@ -89,8 +89,8 @@ const EHMDetectEvent = (mainContainer, storage) => {
 
         if (event.target.classList.contains('editProjectNameForm')){
             const editFormInput = document.getElementById('editFormInput'); 
-            let editformValue = editformInput.value;
-            let selectedProject = document.querySelector('.selectedProject');
+            const editformValue = editformInput.value;
+            const selectedProject = document.querySelector('.selectedProject');
             // update the local storage
             LSMEditProjectName(storage, editformValue, selectedProject);
             
@@ -100,10 +100,15 @@ const EHMDetectEvent = (mainContainer, storage) => {
             editformInput.value = '';
 
             // update the display name
-            let projectItemLeft = selectedProject.querySelector('.projectItemLeft');
-            let projectDisplay = projectItemLeft.querySelector('div');
+            const projectItemLeft = selectedProject.querySelector('.projectItemLeft');
+            const projectDisplay = projectItemLeft.querySelector('div');
 
             projectDisplay.textContent = editformValue;
+
+            // update the dashboard
+            const selectedProjectId = document.querySelector('.selectedProject').id;
+            const dashboard = document.querySelector('#dashboard');
+            DMMPopulateDashboard(storage, selectedProjectId, dashboard);
         }
         else if (event.target.classList.contains('addProjectForm')){
             const addFormInput = document.getElementById('addFormInput');
