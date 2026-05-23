@@ -403,7 +403,7 @@ const DMMDashboardHeader = (storage, selectedProjectId, dashboardContainer) => {
     dashboardTotal.className = 'dashboardTotal';
     dashboardTotal.textContent =`${total} total`;
 
-    addBtn.className = 'addBtn';
+    addBtn.className = 'addTaskBtn';
     addBtn.textContent = 'Add Task';
 
     dashboardStats.appendChild(dashboardPending);

@@ -313,7 +313,7 @@ dialog form{
   color: var(--baseBlack);
   border-bottom: 3px dotted var(--baseBlack);
 }
-.dashboardHeader .addBtn{
+.dashboardHeader .addTaskBtn{
   background-color: var(--mainOrange);
   border: 1px solid var(--mainOrange);
   border-radius: 10px;
@@ -325,7 +325,7 @@ dialog form{
   transition: all 0.3s ease;
 }
 
-.dashboardHeader .addBtn:hover{
+.dashboardHeader .addTaskBtn:hover{
   background-color: var(--baseWhite);
   border: 2px dotted var(--mainOrange);
   color: var(--mainOrange);
