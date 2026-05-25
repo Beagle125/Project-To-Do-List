@@ -389,7 +389,8 @@ const DMMDashboardHeader = (storage, selectedProjectId, dashboardContainer) => {
 
     // Find the project of interest
     let selectedProject = storage.find(project => project.id === selectedProjectId);
-    let total = selectedProject.todos.length;
+    console.log(selectedProject.todos);
+    let total = (selectedProject.todos).length;
     let pending = selectedProject.todos.filter(task => task.marked === false).length;
 
     // Create the header

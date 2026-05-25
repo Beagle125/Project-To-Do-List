@@ -26,9 +26,6 @@ const LSMTickTask = (storage, taskItem) => {
     const projectId = document.querySelector('.selectedProject').id;
     const taskId = taskItem.id;
     const projectIndex = storage.findIndex(project => project.id === projectId);
-
-    console.log(projectIndex);
-
     const taskIndex = storage[projectIndex].todos.findIndex(task => task.id === taskId);
 
     // change the value of the marked
