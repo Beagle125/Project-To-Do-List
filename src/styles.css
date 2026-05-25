@@ -148,12 +148,16 @@ html, body{
 
 /* edit and delete button styles */
 .deleteBtn,
-.editBtn{
+.editBtn,
+.editTaskBtn,
+.deleteTaskBtn{
   transition: all 0.3s ease;
 }
 
 .deleteBtn:hover,
-.editBtn:hover{
+.editBtn:hover,
+.editTaskBtn:hover,
+.deleteTaskBtn:hover{
   filter: brightness(1.3);
   transform: scale(1.2);
 }

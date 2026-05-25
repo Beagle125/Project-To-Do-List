@@ -93,10 +93,10 @@ const DMMCreateTaskItem = (task, dashboardBody) => {
     const buttonDiv = document.createElement('div');
     const editBtn = document.createElement('img');
     editBtn.src = editImg;
-    editBtn.className = 'editBtn';
+    editBtn.className = 'editTaskBtn';
     const deleteBtn = document.createElement('img');
     deleteBtn.src = deleteImg;
-    deleteBtn.className = 'deleteBtn';
+    deleteBtn.className = 'deleteTaskBtn';
     buttonDiv.appendChild(editBtn);
     buttonDiv.appendChild(deleteBtn);
 
