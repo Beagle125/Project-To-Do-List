@@ -438,6 +438,28 @@ const DMMDashboardBody = (storage, selectedProjectId, dashboardContainer) => {
 
     dashboardContainer.appendChild(dashboardBody);
 };
+
+const DMMCreateTaskModal = (mainContainer) => {
+    const modal = document.createElement('dialog');
+    modal.id = 'taskModal';
+
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'taskModalHeader';
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImg;
+    closeBtn.className = 'closeBtn';
+    const headerText = document.createElement('p');
+    headerText.className = 'taskModalHeaderText';
+    headerDiv.appendChild(headerText);
+    headerDiv.appendChild(closeBtn);
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'taskModalBody';
+
+    modal.appendChild(headerDiv);
+    modal.appendChild(bodyDiv);
+    mainContainer.appendChild(modal);
+};
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -456,4 +478,5 @@ export{
     DMMCloseDeleteModal,
     DMMDeleteProject,
     DMMPopulateDashboard,
+    DMMCreateTaskModal,
 }

@@ -1,4 +1,4 @@
-import { DMMCreateSideBar, DMMCreateDashboard, DMMCreateEditModal, DMMCreateAddModal, DMMCreateDeleteModal, DMMPopulateDashboard } from './domManipulationModule.js';
+import { DMMCreateSideBar, DMMCreateDashboard, DMMCreateEditModal, DMMCreateAddModal, DMMCreateDeleteModal, DMMPopulateDashboard, DMMCreateTaskModal } from './domManipulationModule.js';
 import { LSMCheckStorage } from './localStorageModule.js';
 import { EHMDetectEvent } from './eventHandlerModule.js';
 
@@ -10,6 +10,7 @@ export{
     DMMCreateAddModal,
     DMMCreateDeleteModal,
     DMMPopulateDashboard,
+    DMMCreateTaskModal,
     LSMCheckStorage,
     EHMDetectEvent,
 }

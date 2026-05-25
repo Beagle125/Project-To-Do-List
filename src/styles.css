@@ -186,7 +186,6 @@ dialog[open]{
   display: grid;
   gap: 12px;
   grid-template-rows: 1fr 1fr;
-  height: 210px;
   position: fixed;
   z-index: 0;
   overflow: hidden;
