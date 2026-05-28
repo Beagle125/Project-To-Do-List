@@ -1,6 +1,7 @@
 import "./styles.css";
 import * as myModules from './myModules.js';
 
+localStorage.clear();
 // This IIFE contains all the logic for the website, where it all starts
 (function websiteLogic (){
     const mainContainer = document.getElementById('content'); // the main container
@@ -8,8 +9,6 @@ import * as myModules from './myModules.js';
 
     // The initial setUp when loading the website logic
     const setUp = () => {
-        // Declare the selected project to be the first
-        let selectedProjectIndex = 0;
         // Check for the storage if it contains valid values
         myModules.LSMCheckStorage(storage);
         // Recheck storage again if ever it is updated
@@ -31,7 +30,7 @@ import * as myModules from './myModules.js';
 
     // Start of the website
     setUp();
-    
+
     // event detections
     myModules.EHMDetectEvent(mainContainer, storage);
 })();

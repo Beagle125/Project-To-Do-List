@@ -10,12 +10,13 @@ import checkboxImg from '../static/check.svg';
 import uncheckboxImg from '../static/uncheck.svg';
 import calendarImg from '../static/calendar.svg';
 
+
 const DMMCreateProjectItem = (project, scrollable) => {
     // Create and add the proper attributes to projectItem
     let projectItem = document.createElement('div');
     projectItem.classList.add('projectItem');
     projectItem.classList.add('projectContent');
-    projectItem.id = `${project.id}`;
+    projectItem.id = project.id;
     // Create the left side properties and their attributes
     let projectItemLeft = document.createElement('div');
     let projectItemText = document.createElement('div');
@@ -389,8 +390,7 @@ const DMMDashboardHeader = (storage, selectedProjectId, dashboardContainer) => {
 
     // Find the project of interest
     let selectedProject = storage.find(project => project.id === selectedProjectId);
-    console.log(selectedProject.todos);
-    let total = (selectedProject.todos).length;
+    let total = selectedProject.todos.length;
     let pending = selectedProject.todos.filter(task => task.marked === false).length;
 
     // Create the header
