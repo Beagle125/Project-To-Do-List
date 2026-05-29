@@ -74,7 +74,6 @@ const LSMDeleteProject = (storage, selectedProject) => {
     return newStorage;
 };
 
-// TODO
 const LSMObjectify = (storage) => {
     const currentLocalStorage = JSON.parse(localStorage.getItem('donezoData'));
 

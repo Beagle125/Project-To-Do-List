@@ -461,6 +461,79 @@ const DMMCreateTaskModal = (mainContainer) => {
     modal.appendChild(bodyDiv);
     mainContainer.appendChild(modal);
 };
+
+const DMMCloseTaskModal = () => {
+    const modal = document.getElementById('taskModal'); 
+    modal.close();
+};
+
+const DMMTaskCreationModal = () => {
+    const modal = document.getElementById('taskModal');
+    const modalHeader = modal.querySelector('.taskModalHeader');
+    const modalBody = modal.querySelector('.taskModalBody');
+    const modalHeaderText = modal.querySelector('.taskModalHeaderText');
+    // header content
+    modalHeaderText.textContent = 'Add a new task';
+    // empty out the modal body
+    modalBody.replaceChildren();
+    const form = document.createElement('form');
+
+    const title = document.createElement('input');
+    const titleLabel = document.createElement('label');
+    title.type = 'text';
+    title.id = 'taskName';
+    titleLabel.textContent = 'Title';
+    titleLabel.for = 'taskName';
+    form.appendChild(titleLabel);
+    form.appendChild(title);
+
+    const dueDate = document.createElement('input');
+    const dueDateLabel = document.createElement('label');
+    dueDate.type = 'date';
+    dueDate.id = 'taskDueDate';
+    dueDateLabel.textContent = 'Due Date';
+    dueDateLabel.for = 'taskDueDate';
+    form.appendChild(dueDateLabel);
+    form.appendChild(dueDate);
+
+    const priority = document.createElement('select');
+    const priorityLabel = document.createElement('label');
+    const easyOption = document.createElement('option');
+    const mediumOption = document.createElement('option');
+    const hardOption = document.createElement('option');
+    priority.id = 'taskPriority';
+    priorityLabel.textContent = 'Priority';
+    priorityLabel.for = 'taskPriority';
+    easyOption.value = 0;
+    easyOption.textContent = 'Easy';
+    mediumOption.value = 1;
+    mediumOption.textContent = 'Medium';
+    hardOption.value = 2;
+    hardOption.textContent = 'Hard';
+    priority.appendChild(easyOption);
+    priority.appendChild(mediumOption);
+    priority.appendChild(hardOption);
+    form.appendChild(priorityLabel);
+    form.appendChild(priority);
+
+    const description = document.createElement('textarea');
+    const descriptionLabel = document.createElement('label');
+    description.id = 'taskDescription';
+    descriptionLabel.textContent = 'Description';
+    descriptionLabel.for = 'taskDescription';
+    form.appendChild(descriptionLabel);
+    form.appendChild(description);
+
+    const submit = document.createElement('button');
+    submit.textContent = 'Submit';
+    form.appendChild(submit);
+
+    modalBody.appendChild(form);
+
+    modal.showModal();
+
+};
+
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -480,4 +553,6 @@ export{
     DMMDeleteProject,
     DMMPopulateDashboard,
     DMMCreateTaskModal,
+    DMMCloseTaskModal,
+    DMMTaskCreationModal,
 }

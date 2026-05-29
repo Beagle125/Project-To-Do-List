@@ -3,7 +3,8 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMOpenEditModal, DMMCloseEditModal, 
        DMMOpenAddModal, DMMCloseAddModal, 
        DMMOpenDeleteModal, DMMCloseDeleteModal,
-       DMMDeleteProject, DMMPopulateDashboard,} from "./domManipulationModule.js";
+       DMMDeleteProject, DMMPopulateDashboard,
+       DMMCloseTaskModal, DMMTaskCreationModal,} from "./domManipulationModule.js";
 import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, LSMTickTask, } from "./localStorageModule.js";
 
 const EHMDetectEvent = (mainContainer, storage) => {
@@ -68,11 +69,16 @@ const EHMDetectEvent = (mainContainer, storage) => {
             DMMOpenDeleteModal(projectTitle);
             DMMPopulateDashboard(storage, selectedProject.id, dashboardContainer); 
         }
+        // open create a new task modal
+        else if (event.target.classList.contains('addTaskBtn')){
+            DMMTaskCreationModal();
+        }
         // close modal
         else if (event.target.classList.contains('closeBtn')){
              DMMCloseEditModal();
              DMMCloseAddModal();
              DMMCloseDeleteModal();
+             DMMCloseTaskModal();
         }
         // mark task as complete
         else if (event.target.classList.contains('taskItemCheckbox')){
