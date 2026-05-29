@@ -35,8 +35,9 @@ const LSMTickTask = (storage, taskItem) => {
     localStorage.setItem('donezoData', JSON.stringify(storage));
 };
 
-const LSMCheckStorage = (storage) => {
+const LSMCheckStorage = () => {
     /* Intial check of storage item*/
+    let storage = JSON.parse(localStorage.getItem('donezoData'));
     if (!storage){
         // Add project 1
         let defaultData = []
@@ -73,6 +74,22 @@ const LSMDeleteProject = (storage, selectedProject) => {
     return newStorage;
 };
 
+// TODO
+const LSMObjectify = (storage) => {
+    const currentLocalStorage = JSON.parse(localStorage.getItem('donezoData'));
+
+    for (let project of currentLocalStorage){
+        let newProject = new CLMProject(project._id, project._title, []);
+        let newProjectIndex = currentLocalStorage.findIndex(project => project._id === newProject.id);
+        let newProjectTodos = currentLocalStorage[newProjectIndex]._todos;
+        for (let task of newProjectTodos){
+            let newTask = new CLMTask(task._id, task._title, task._description, task._due, task._priority, task._marked);
+            newProject.todos.push(newTask); 
+        }
+        storage.push(newProject);
+    }
+}
+
 export{
     LSMCheckStorage,
     LSMEditProjectName,
@@ -80,4 +97,5 @@ export{
     LSMAddNewProject,
     LSMDeleteProject,
     LSMTickTask,
+    LSMObjectify,
 }
