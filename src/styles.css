@@ -206,6 +206,7 @@ dialog::backdrop{
 
 dialog form{
   display: flex;
+  gap: 12px;
   grid-column: 1 / 3;
   grid-row: 2 / 3;
   justify-content: space-between;
@@ -226,7 +227,7 @@ dialog form{
   color: white;
   font-family: var(--bodyFont);
   height: 3rem;
-  width: 70%;
+  width: 100%;
 }
 
 /* Save button styles */
@@ -238,7 +239,7 @@ dialog form{
   font-family: var(--bodyFont);
   font-size: var(--bodySize);
   height: 3rem;
-  width: 20%;
+  width: 6rem;
   transition: all 0.3s ease;
 }
 
@@ -385,7 +386,7 @@ dialog form{
 
 .taskItemHeader{
   margin: 0 0 0 0;
-  font-family: var(--headerFont);
+  font-family: var(--headerFont), var(--bodyFont);
   font-size: var(--headerSize);
 }
 
@@ -425,3 +426,72 @@ dialog form{
   font-family: var(--bodyFont);
   font-size: var(--bodySize);
 }
+
+/*Task modal styles*/
+#taskModal[open]{
+  grid-template-rows: 1fr 3fr;
+  height: 30rem;
+  width: 20rem;
+}
+
+#taskModal .taskModalHeader{
+  display: flex;
+  gap: 12px;
+  justify-content: space-evenly;
+  padding: 0;
+}
+
+.taskModalHeaderText{
+  align-self: center;
+  color: var(--baseWhite);
+  font-family: var(--headerFont), var(--bodyFont);
+  font-size: var(--headerSize);
+}
+
+.taskModalBody form{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.taskModalBody form fieldset{ /*This is for the fieldset for due date and priority*/
+  align-self: center;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.taskModalBody form label{
+  color: var(--baseWhite);
+  font-family: var(--bodyFont);
+  font-size: var(--bodySize);
+}
+
+.formItem{
+  display: flex;
+  flex-direction: column;
+}
+
+.taskSubmitBtn{
+  align-self: center;
+}
+
+textarea{
+  box-sizing: border-box;
+  flex-basis: 5rem;
+  resize: none;
+  height: 10rem;
+}
+
+
+select {
+  border: 2px solid #dddddd;
+  color: white;
+  background: #eeeeee;
+  padding: 10px;
+  transition: 0.4s;
+}
+
+
