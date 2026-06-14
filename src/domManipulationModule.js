@@ -477,6 +477,7 @@ const DMMTaskCreationModal = () => {
     // empty out the modal body
     modalBody.replaceChildren();
     const form = document.createElement('form');
+    form.className = 'addTaskForm';
 
     const title = document.createElement('input');
     const titleLabel = document.createElement('label');
@@ -487,6 +488,7 @@ const DMMTaskCreationModal = () => {
     title.className = 'formInput';
     title.placeholder = 'my very important task'
     title.required = true;
+    title.autocomplete = 'off';
     titleLabel.textContent = 'Title';
     titleLabel.htmlFor = 'taskName';
     titleDiv.appendChild(titleLabel);
@@ -585,4 +587,5 @@ export{
     DMMCreateTaskModal,
     DMMCloseTaskModal,
     DMMTaskCreationModal,
+    DMMCreateTaskItem,
 }

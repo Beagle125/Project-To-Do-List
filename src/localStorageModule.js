@@ -44,7 +44,7 @@ const LSMCheckStorage = () => {
         let defaultProject1 = LSMCreateProject('Project 1');
         LSMAddNewProject(defaultData, defaultProject1);
         // Add task 1
-        let task1 = LSMCreateTask('Todo1', 'My very first todo', 'March 16, 2007', 0, false); //date formatting and priority is not yet applied here
+        let task1 = LSMCreateTask('Todo1', 'My very first todo', '2007-03-16', 0, false); //date formatting and priority is not yet applied here
         let projectId = defaultData[0].id;
         LSMAddNewTask(defaultData, projectId, task1);
     }
@@ -97,4 +97,6 @@ export{
     LSMDeleteProject,
     LSMTickTask,
     LSMObjectify,
+    LSMCreateTask,
+    LSMAddNewTask,
 }

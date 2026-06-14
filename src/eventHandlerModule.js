@@ -4,8 +4,10 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMOpenAddModal, DMMCloseAddModal, 
        DMMOpenDeleteModal, DMMCloseDeleteModal,
        DMMDeleteProject, DMMPopulateDashboard,
-       DMMCloseTaskModal, DMMTaskCreationModal,} from "./domManipulationModule.js";
-import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, LSMTickTask, } from "./localStorageModule.js";
+       DMMCloseTaskModal, DMMTaskCreationModal, DMMCreateTaskItem} from "./domManipulationModule.js";
+import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, 
+        LSMTickTask, LSMCreateTask, LSMAddNewTask} from "./localStorageModule.js";
+import { format } from 'date-fns/fp';
 
 const EHMDetectEvent = (mainContainer, storage) => {
     const addProjectBtn = document.querySelector('#sidebar .addBtn');
@@ -140,6 +142,25 @@ const EHMDetectEvent = (mainContainer, storage) => {
             const dashboardContainer = document.querySelector('#dashboard');
             DMMPopulateDashboard(storage, newlySelectedProject.id, dashboardContainer);
             console.log(storage);
+        }
+        else if (event.target.classList.contains('addTaskForm')){
+            const title = document.querySelector('#taskName').value;
+            const dueDate = document.querySelector('#taskDueDate').value;
+            const priority = document.querySelector('#taskPriority').value;
+            const description = document.querySelector('#taskDescription').value;
+
+            console.log(title);
+            console.log(dueDate);
+            console.log(priority);
+            console.log(description);
+
+            const newTask = LSMCreateTask(title, description, dueDate, Number(priority), false);
+            const selectedProjectId = document.querySelector('.selectedProject').id;
+            LSMAddNewTask(storage, selectedProjectId, newTask);
+            const dashboardBody = document.querySelector('.dashboardBody');
+            
+            DMMCreateTaskItem(newTask, dashboardBody);
+            DMMCloseTaskModal();
         }
     });
 }
