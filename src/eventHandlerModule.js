@@ -160,6 +160,8 @@ const EHMDetectEvent = (mainContainer, storage) => {
             const dashboardBody = document.querySelector('.dashboardBody');
             
             DMMCreateTaskItem(newTask, dashboardBody);
+            // refresh the dashboard
+            DMMPopulateDashboard(storage, selectedProjectId, document.getElementById('dashboard'));
             DMMCloseTaskModal();
         }
     });
