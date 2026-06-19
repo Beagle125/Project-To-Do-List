@@ -107,7 +107,6 @@ const DMMCreateTaskItem = (task, dashboardBody) => {
     taskItem.appendChild(buttonDiv);
 
     dashboardBody.appendChild(taskItem);
-
 };
 
 const DMMCreateSideBar = (mainContainer, storage) => {

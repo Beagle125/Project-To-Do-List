@@ -1,5 +1,6 @@
 import { CLMProject } from "./classLogicModule.js";
 import { CLMTask } from "./classLogicModule.js";
+import { format } from 'date-fns';
 
 const LSMCreateProject = (projectTitle) => {
     let project = new CLMProject(self.crypto.randomUUID(), projectTitle, []);
@@ -12,7 +13,8 @@ const LSMAddNewProject = (storage, project) => {
 };
 
 const LSMCreateTask = (taskTitle, taskDescription, taskDue, taskPriority, taskMarked) => {
-    let task = new CLMTask(self.crypto.randomUUID(),  taskTitle, taskDescription, taskDue, taskPriority, taskMarked);
+    const stringDate = format(new Date(taskDue), '	MMMM d, yyyy');
+    let task = new CLMTask(self.crypto.randomUUID(),  taskTitle, taskDescription, stringDate, taskPriority, taskMarked);
     return task;
 };
 
