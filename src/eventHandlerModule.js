@@ -89,6 +89,9 @@ const EHMDetectEvent = (mainContainer, storage) => {
             LSMTickTask(storage, nearestTaskItem);
             DMMPopulateDashboard(storage, selectedProjectId, dashboard);
         }
+        else if (event.target.classList.contains('editTaskBtn')){
+            console.log("Viewing task");
+        }
     });
 
     // submit event using event delegation

@@ -2,7 +2,6 @@ import "./styles.css";
 import * as myModules from './myModules.js';
 
 // This IIFE contains all the logic for the website, where it all starts
-localStorage.clear();
 (function websiteLogic (){
     const mainContainer = document.getElementById('content'); // the main container
     let storage = []; // the main storage to be used in the session
@@ -17,6 +16,7 @@ localStorage.clear();
         myModules.DMMCreateAddModal(mainContainer);
         myModules.DMMCreateDeleteModal(mainContainer);
         myModules.DMMCreateTaskModal(mainContainer);
+        myModules.DMMCreateViewTaskModal(mainContainer);
         // Create the sidebar
         myModules.DMMCreateSideBar(mainContainer, storage);
         // Create the dashboard

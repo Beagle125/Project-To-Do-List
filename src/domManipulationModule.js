@@ -565,6 +565,71 @@ const DMMTaskCreationModal = () => {
 
 };
 
+const DMMCreateViewTaskModal = (mainContainer) => {
+    const modal = document.createElement('dialog');
+    modal.id = 'viewModal';
+
+    const header = document.createElement('div');
+    const headerText = document.createElement('p');
+    const closeBtn = document.createElement('img');
+    closeBtn.src = closeImg;
+    closeBtn.className = 'closeBtn';
+    headerText.className = 'taskModalHeaderText';
+    headerText.textContent = 'Task1';
+    header.appendChild(headerText);
+    header.appendChild(closeBtn);
+
+
+    const body = document.createElement('div');
+    const topBody = document.createElement('div');
+    const dueDate = document.createElement('div');
+    const priority = document.createElement('div');
+    const description = document.createElement('div');
+    dueDate.className = 'taskViewItem';
+    priority.className = 'taskViewItem';
+    description.className = 'taskViewItem';
+    const dueDateHeader = document.createElement('p');
+    const priorityHeader = document.createElement('p');
+    dueDateHeader.textContent = 'Due Date';
+    priorityHeader.textContent = 'Priority';
+    const dueDateContent = document.createElement('p');
+    const priorityContent = document.createElement('p');
+    dueDateContent.className = 'taskViewItemContent';
+    priorityContent.className = 'taskViewItemContent';
+    dueDateContent.textContent = '';
+    priorityContent.textContent = '';
+    dueDate.appendChild(dueDateHeader);
+    dueDate.appendChild(dueDateContent);
+    priority.appendChild(priorityHeader);
+    priority.appendChild(priorityContent);
+    topBody.appendChild(dueDate);
+    topBody.appendChild(priority);
+    const bottomBody = document.createElement('div');
+    const descriptionHeader = document.createElement('p');
+    const descriptionContent = document.createElement('p');
+    descriptionHeader.textContent = 'Description';
+    descriptionContent.className = 'taskViewItemContent';
+    descriptionContent.textContent = '';
+    description.appendChild(descriptionHeader);
+    description.appendChild(descriptionContent);
+    bottomBody.appendChild(description);
+    body.appendChild(topBody);
+    body.appendChild(bottomBody);
+
+    modal.appendChild(header);
+    modal.appendChild(body);
+
+    const footer = document.createElement('div');
+    const button = document.createElement('button');
+    button.className = "saveBtn";
+    button.textContent = "Edit";
+    footer.appendChild(button);
+    modal.appendChild(footer);
+
+    mainContainer.appendChild(modal);
+    modal.showModal();
+};
+
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -587,4 +652,5 @@ export{
     DMMCloseTaskModal,
     DMMTaskCreationModal,
     DMMCreateTaskItem,
+    DMMCreateViewTaskModal,
 }

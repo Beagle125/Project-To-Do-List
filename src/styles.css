@@ -495,4 +495,68 @@ select {
   transition: 0.4s;
 }
 
+/*View task modal*/
+#viewModal[open]{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  overflow-y: auto;
+}
+
+#viewModal div:first-of-type{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+#viewModal div:nth-child(2){
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#viewModal div:first-of-type>img{
+  position: absolute;
+  right: 1rem;
+}
+
+#viewModal>div:nth-child(2)>div{
+  align-self: center;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.taskViewItem{
+  display: flex;
+  flex-direction: column;
+}
+
+.taskViewItem>p{
+  color: var(--baseWhite);
+  font-family: var(--bodyFont);
+  font-size: var(--bodySize);
+  width: 20rem;
+}
+
+#viewModal>div:nth-child(2)>div:last-of-type>div>p:first-of-type{
+  text-align:left;
+  margin-left: 2rem;
+  width: 100%;
+}
+#viewModal>div:nth-child(2)>div:last-of-type>div>p:last-of-type{
+  width: 40rem;
+}
+
+.taskViewItemContent{
+  background-color: var(--darkestBlack);
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  width: 30%;
+}
 
