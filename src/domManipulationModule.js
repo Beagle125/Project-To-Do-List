@@ -574,8 +574,8 @@ const DMMCreateViewTaskModal = (mainContainer) => {
     const closeBtn = document.createElement('img');
     closeBtn.src = closeImg;
     closeBtn.className = 'closeBtn';
-    headerText.className = 'taskModalHeaderText';
-    headerText.textContent = 'Task1';
+    headerText.className = 'taskViewModalHeaderText';
+    headerText.textContent = '';
     header.appendChild(headerText);
     header.appendChild(closeBtn);
 
@@ -595,7 +595,9 @@ const DMMCreateViewTaskModal = (mainContainer) => {
     const dueDateContent = document.createElement('p');
     const priorityContent = document.createElement('p');
     dueDateContent.className = 'taskViewItemContent';
+    dueDateContent.classList.add('taskViewDueDate');
     priorityContent.className = 'taskViewItemContent';
+    priorityContent.classList.add('taskViewPriority');
     dueDateContent.textContent = '';
     priorityContent.textContent = '';
     dueDate.appendChild(dueDateHeader);
@@ -609,6 +611,7 @@ const DMMCreateViewTaskModal = (mainContainer) => {
     const descriptionContent = document.createElement('p');
     descriptionHeader.textContent = 'Description';
     descriptionContent.className = 'taskViewItemContent';
+    descriptionContent.classList.add('taskViewDescription');
     descriptionContent.textContent = '';
     description.appendChild(descriptionHeader);
     description.appendChild(descriptionContent);
@@ -627,9 +630,36 @@ const DMMCreateViewTaskModal = (mainContainer) => {
     modal.appendChild(footer);
 
     mainContainer.appendChild(modal);
+};
+
+const DMMOpenTaskViewModal = (task) => {
+    const headerText = document.querySelector('.taskViewModalHeaderText');
+    const dueDate = document.querySelector('.taskViewDueDate');
+    const priority = document.querySelector('.taskViewPriority');
+    const description = document.querySelector('.taskViewDescription');
+    const modal = document.getElementById('viewModal');
+
+    headerText.textContent = task.title;
+    dueDate.textContent = task.due;
+    switch(task.priority){
+        case 0:
+            priority.textContent = 'Easy';
+            break;
+        case 1:
+            priority.textContent = 'Medium';
+        case 2:
+            priority.textContent = 'Hard';
+    }
+
+    description.textContent = task.description;
+
     modal.showModal();
 };
 
+const DMMCloseViewTaskModal = () => {
+    const modal = document.getElementById('viewModal');
+    modal.close();
+}
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -653,4 +683,6 @@ export{
     DMMTaskCreationModal,
     DMMCreateTaskItem,
     DMMCreateViewTaskModal,
+    DMMOpenTaskViewModal,
+    DMMCloseViewTaskModal,
 }

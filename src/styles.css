@@ -442,7 +442,8 @@ dialog form{
   padding: 0;
 }
 
-.taskModalHeaderText{
+.taskModalHeaderText,
+.taskViewModalHeaderText{
   align-self: center;
   color: var(--baseWhite);
   font-family: var(--headerFont), var(--bodyFont);
@@ -546,7 +547,7 @@ select {
 
 #viewModal>div:nth-child(2)>div:last-of-type>div>p:first-of-type{
   text-align:left;
-  margin-left: 2rem;
+  margin-left: 6rem;
   width: 100%;
 }
 #viewModal>div:nth-child(2)>div:last-of-type>div>p:last-of-type{

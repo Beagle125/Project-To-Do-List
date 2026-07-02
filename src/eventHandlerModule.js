@@ -4,7 +4,8 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMOpenAddModal, DMMCloseAddModal, 
        DMMOpenDeleteModal, DMMCloseDeleteModal,
        DMMDeleteProject, DMMPopulateDashboard,
-       DMMCloseTaskModal, DMMTaskCreationModal, DMMCreateTaskItem} from "./domManipulationModule.js";
+       DMMCloseTaskModal, DMMTaskCreationModal, DMMCreateTaskItem, 
+       DMMOpenTaskViewModal, DMMCloseViewTaskModal} from "./domManipulationModule.js";
 import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, 
         LSMTickTask, LSMCreateTask, LSMAddNewTask} from "./localStorageModule.js";
 
@@ -81,6 +82,7 @@ const EHMDetectEvent = (mainContainer, storage) => {
              DMMCloseAddModal();
              DMMCloseDeleteModal();
              DMMCloseTaskModal();
+             DMMCloseViewTaskModal();
         }
         // mark task as complete
         else if (event.target.classList.contains('taskItemCheckbox')){
@@ -90,7 +92,14 @@ const EHMDetectEvent = (mainContainer, storage) => {
             DMMPopulateDashboard(storage, selectedProjectId, dashboard);
         }
         else if (event.target.classList.contains('editTaskBtn')){
-            console.log("Viewing task");
+            const selectedTaskId = nearestTaskItem.id;
+            const selectedProjectId = document.querySelector('.selectedProject').id;
+            const selectedProjectIndex = storage.findIndex(project => selectedProjectId == project.id);
+            const selectedTaskIndex = storage[selectedProjectIndex].todos.findIndex(task => selectedTaskId === task.id);
+            const currTask = storage[selectedProjectIndex].todos[selectedTaskIndex];
+            
+            console.log(currTask);
+            DMMOpenTaskViewModal(currTask);
         }
     });
 
