@@ -24,6 +24,15 @@ const LSMAddNewTask = (storage, projectId, task) => {
     localStorage.setItem('donezoData', JSON.stringify(storage));
 };
 
+const LSMEditTask = (storage, selectedTaskId, editedTask) => {
+    const projectId = document.querySelector('.selectedProject').id;
+    const projectIndex = storage.findIndex(project => project.id === projectId);
+    const taskIndex = storage[projectIndex].todos.findIndex(task => task.id === selectedTaskId);
+    console.log(taskIndex);
+    storage[projectIndex].todos.splice(taskIndex, 1, editedTask);
+    localStorage.setItem('donezoData', JSON.stringify(storage));
+};
+
 const LSMTickTask = (storage, taskItem) => {
     const projectId = document.querySelector('.selectedProject').id;
     const taskId = taskItem.id;
@@ -101,4 +110,5 @@ export{
     LSMObjectify,
     LSMCreateTask,
     LSMAddNewTask,
+    LSMEditTask,
 }

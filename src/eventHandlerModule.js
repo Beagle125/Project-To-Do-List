@@ -5,13 +5,14 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMOpenDeleteModal, DMMCloseDeleteModal,
        DMMDeleteProject, DMMPopulateDashboard,
        DMMCloseTaskModal, DMMTaskCreationModal, DMMCreateTaskItem, 
-       DMMOpenTaskViewModal, DMMCloseViewTaskModal} from "./domManipulationModule.js";
+       DMMOpenTaskViewModal, DMMCloseViewTaskModal, DMMEditTaskModal} from "./domManipulationModule.js";
 import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, 
-        LSMTickTask, LSMCreateTask, LSMAddNewTask} from "./localStorageModule.js";
+        LSMTickTask, LSMCreateTask, LSMAddNewTask, LSMEditTask} from "./localStorageModule.js";
 
 
 const EHMDetectEvent = (mainContainer, storage) => {
     const addProjectBtn = document.querySelector('#sidebar .addBtn');
+    let selectedTaskId;
     let isProjectHovered = false;
 
     // Hover event for each project item using event delegation
@@ -92,14 +93,16 @@ const EHMDetectEvent = (mainContainer, storage) => {
             DMMPopulateDashboard(storage, selectedProjectId, dashboard);
         }
         else if (event.target.classList.contains('editTaskBtn')){
-            const selectedTaskId = nearestTaskItem.id;
+            selectedTaskId = nearestTaskItem.id;
             const selectedProjectId = document.querySelector('.selectedProject').id;
-            const selectedProjectIndex = storage.findIndex(project => selectedProjectId == project.id);
-            const selectedTaskIndex = storage[selectedProjectIndex].todos.findIndex(task => selectedTaskId === task.id);
-            const currTask = storage[selectedProjectIndex].todos[selectedTaskIndex];
-            
-            console.log(currTask);
+            const currTask = EHMFindTask(storage, selectedTaskId);
             DMMOpenTaskViewModal(currTask);
+        }
+        else if (event.target.classList.contains('confirmEditTaskBtn')){
+            const currTask = EHMFindTask(storage, selectedTaskId);
+            DMMCloseViewTaskModal();
+            DMMEditTaskModal(mainContainer, currTask);
+            
         }
     });
 
@@ -165,12 +168,32 @@ const EHMDetectEvent = (mainContainer, storage) => {
             LSMAddNewTask(storage, selectedProjectId, newTask);
             const dashboardBody = document.querySelector('.dashboardBody');
             
-            DMMCreateTaskItem(newTask, dashboardBody);
             // refresh the dashboard
             DMMPopulateDashboard(storage, selectedProjectId, document.getElementById('dashboard'));
             DMMCloseTaskModal();
         }
+        else if (event.target.classList.contains('editTaskForm')){
+            const title = document.querySelector('#taskName').value;
+            const dueDate = document.querySelector('#taskDueDate').value;
+            const priority = document.querySelector('#taskPriority').value;
+            const description = document.querySelector('#taskDescription').value;
+            const selectedProjectId = document.querySelector('.selectedProject').id;
+            const newTask = LSMCreateTask(title, description, dueDate, Number(priority), false);
+            LSMEditTask(storage, selectedTaskId, newTask);
+
+            // refresh the dashboard
+            DMMPopulateDashboard(storage, selectedProjectId, document.getElementById('dashboard'));
+            DMMCloseTaskModal();
+
+        }
     });
+}
+
+const EHMFindTask = (storage, selectedTaskId) => {
+    const selectedProjectId = document.querySelector(".selectedProject").id;
+    const selectedProjectIndex = storage.findIndex(project => selectedProjectId == project.id);
+    const selectedTaskIndex = storage[selectedProjectIndex].todos.findIndex(task => selectedTaskId === task.id);
+    return storage[selectedProjectIndex].todos[selectedTaskIndex];
 }
 
 export{

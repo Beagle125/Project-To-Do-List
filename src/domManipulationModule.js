@@ -625,6 +625,7 @@ const DMMCreateViewTaskModal = (mainContainer) => {
     const footer = document.createElement('div');
     const button = document.createElement('button');
     button.className = "saveBtn";
+    button.classList.add("confirmEditTaskBtn");
     button.textContent = "Edit";
     footer.appendChild(button);
     modal.appendChild(footer);
@@ -647,6 +648,7 @@ const DMMOpenTaskViewModal = (task) => {
             break;
         case 1:
             priority.textContent = 'Medium';
+            break;
         case 2:
             priority.textContent = 'Hard';
     }
@@ -660,6 +662,105 @@ const DMMCloseViewTaskModal = () => {
     const modal = document.getElementById('viewModal');
     modal.close();
 }
+
+const DMMEditTaskModal = (mainContainer, task) => {
+    const modal = document.getElementById('taskModal');
+    const modalHeader = modal.querySelector('.taskModalHeader');
+    const modalBody = modal.querySelector('.taskModalBody');
+    const modalHeaderText = modal.querySelector('.taskModalHeaderText');
+    // header content
+    modalHeaderText.textContent = 'Edit ' + task.title;
+    // empty out the modal body
+    modalBody.replaceChildren();
+    const form = document.createElement('form');
+    form.className = 'editTaskForm';
+
+    const title = document.createElement('input');
+    const titleLabel = document.createElement('label');
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'formItem';
+    title.type = 'text';
+    title.id = 'taskName';
+    title.className = 'formInput';
+    title.placeholder = task.title;
+    title.required = true;
+    title.autocomplete = 'off';
+    titleLabel.textContent = 'Title';
+    titleLabel.htmlFor = 'taskName';
+    titleDiv.appendChild(titleLabel);
+    titleDiv.appendChild(title);
+    form.appendChild(titleDiv);
+
+    const formRow = document.createElement('fieldset');
+
+    const dueDate = document.createElement('input');
+    const dueDateLabel = document.createElement('label');
+    const dueDateDiv = document.createElement('div');
+    dueDateDiv.className = 'formItem';
+    dueDate.type = 'date';
+    dueDate.id = 'taskDueDate';
+    dueDate.className = 'formInput';
+    dueDate.required = true;
+    dueDateLabel.textContent = 'Due Date';
+    dueDateLabel.htmlFor = 'taskDueDate';
+    dueDateDiv.appendChild(dueDateLabel);
+    dueDateDiv.appendChild(dueDate);
+    formRow.appendChild(dueDateDiv);
+
+    const priority = document.createElement('select');
+    const priorityLabel = document.createElement('label');
+    const easyOption = document.createElement('option');
+    const mediumOption = document.createElement('option');
+    const hardOption = document.createElement('option');
+    const priorityDiv = document.createElement('div');
+    priorityDiv.className = 'formItem';
+    priority.id = 'taskPriority';
+    priority.className = 'formInput';
+    priority.required = true;
+    priorityLabel.textContent = 'Priority';
+    priorityLabel.htmlFor = 'taskPriority';
+    easyOption.value = 0;
+    easyOption.textContent = 'Easy';
+    mediumOption.value = 1;
+    mediumOption.textContent = 'Medium';
+    hardOption.value = 2;
+    hardOption.textContent = 'Hard';
+    priority.appendChild(easyOption);
+    priority.appendChild(mediumOption);
+    priority.appendChild(hardOption);
+    priorityDiv.appendChild(priorityLabel);
+    priorityDiv.appendChild(priority)
+    formRow.appendChild(priorityDiv);
+
+
+    form.appendChild(formRow);
+    
+    const description = document.createElement('textarea');
+    const descriptionLabel = document.createElement('label');
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'formItem';
+    description.id = 'taskDescription';
+    description.className = 'formInput';
+    description.placeholder = task.description;
+    description.required = true;
+    descriptionLabel.textContent = 'Description';
+    descriptionLabel.htmlFor = 'taskDescription';
+    descriptionDiv.appendChild(descriptionLabel);
+    descriptionDiv.appendChild(description);
+    form.appendChild(descriptionDiv);
+
+    const submit = document.createElement('button');
+    submit.textContent = 'Edit';
+    submit.classList.add('saveBtn');
+    submit.classList.add('taskSubmitEditBtn');
+    submit.type = 'submit'
+    form.appendChild(submit);
+
+    modalBody.appendChild(form);
+
+    modal.showModal();
+};
+
 export{
     DMMCreateProjectItem,
     DMMCreateSideBar,
@@ -685,4 +786,5 @@ export{
     DMMCreateViewTaskModal,
     DMMOpenTaskViewModal,
     DMMCloseViewTaskModal,
+    DMMEditTaskModal,
 }

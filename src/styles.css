@@ -476,7 +476,7 @@ dialog form{
   flex-direction: column;
 }
 
-.taskSubmitBtn{
+.taskSubmitBtn, .taskSubmitEditBtn{
   align-self: center;
 }
 

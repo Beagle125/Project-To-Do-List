@@ -1,6 +1,6 @@
 import "./styles.css";
 import * as myModules from './myModules.js';
-
+//localStorage.clear();
 // This IIFE contains all the logic for the website, where it all starts
 (function websiteLogic (){
     const mainContainer = document.getElementById('content'); // the main container
