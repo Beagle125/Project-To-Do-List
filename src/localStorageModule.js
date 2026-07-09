@@ -18,6 +18,11 @@ const LSMCreateTask = (taskTitle, taskDescription, taskDue, taskPriority, taskMa
     return task;
 };
 
+const LSMDeleteTask = (storage, projectIndex, taskIndex) => {
+    storage[projectIndex].todos.splice(taskIndex, 1);
+    localStorage.setItem('donezoData', JSON.stringify(storage));
+};
+
 const LSMAddNewTask = (storage, projectId, task) => {
     let projectIndex = storage.findIndex(project => project.id === projectId);
     storage[projectIndex].todos.push(task);
@@ -111,4 +116,5 @@ export{
     LSMCreateTask,
     LSMAddNewTask,
     LSMEditTask,
+    LSMDeleteTask,
 }

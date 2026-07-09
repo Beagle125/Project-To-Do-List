@@ -7,7 +7,7 @@ import { DMMCreateEditModal, DMMHoverProjectItem, DMMUnhoverProjectItem,
        DMMCloseTaskModal, DMMTaskCreationModal, DMMCreateTaskItem, 
        DMMOpenTaskViewModal, DMMCloseViewTaskModal, DMMEditTaskModal} from "./domManipulationModule.js";
 import { LSMEditProjectName, LSMCreateProject, LSMAddNewProject, LSMDeleteProject, 
-        LSMTickTask, LSMCreateTask, LSMAddNewTask, LSMEditTask} from "./localStorageModule.js";
+        LSMTickTask, LSMCreateTask, LSMAddNewTask, LSMEditTask, LSMDeleteTask} from "./localStorageModule.js";
 
 
 const EHMDetectEvent = (mainContainer, storage) => {
@@ -101,8 +101,15 @@ const EHMDetectEvent = (mainContainer, storage) => {
         else if (event.target.classList.contains('confirmEditTaskBtn')){
             const currTask = EHMFindTask(storage, selectedTaskId);
             DMMCloseViewTaskModal();
-            DMMEditTaskModal(mainContainer, currTask);
-            
+            DMMEditTaskModal(mainContainer, currTask);   
+        }
+        else if (event.target.classList.contains('deleteTaskBtn')){
+            const selectedProjectId = document.querySelector('.selectedProject').id;
+            const selectedTaskId = nearestTaskItem.id;
+            const selectedProjectIndex = storage.findIndex(project => selectedProjectId == project.id);
+            const selectedTaskIndex = storage[selectedProjectIndex].todos.findIndex(task => selectedTaskId === task.id);
+            LSMDeleteTask(storage, selectedProjectIndex, selectedTaskIndex);
+            DMMPopulateDashboard(storage, selectedProjectId, dashboardContainer);
         }
     });
 
